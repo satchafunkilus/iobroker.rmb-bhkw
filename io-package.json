@@ -1,0 +1,80 @@
+{
+    "common": {
+        "name": "rmb-bhkw",
+        "version": "0.0.1",
+        "news": {
+            "0.0.1": {
+                "en": "initial release",
+                "de": "Erstveröffentlichung",
+                "ru": "Начальная версия",
+                "pt": "lançamento inicial",
+                "nl": "Eerste uitgave",
+                "fr": "Première version",
+                "it": "Versione iniziale",
+                "es": "Versión inicial",
+                "pl": "Pierwsze wydanie",
+                "zh-cn": "首次出版"
+            }
+        },
+        "title": "RMB BHKW Überwachung",
+        "titleLang": {
+            "en": "RMB BHKW Überwachung",
+            "de": "RMB BHKW Überwachung",
+            "ru": "RMB BHKW Überwachung",
+            "pt": "RMB BHKW Überwachung",
+            "nl": "RMB BHKW berwachung",
+            "fr": "RMB BHKW Überwachung",
+            "it": "RMB BHKW Überwachung",
+            "es": "RMB BHKW Überwachung",
+            "pl": "RMB BHKW Überwachung",
+            "zh-cn": "人民币 BHKW Überwachung"
+        },
+        "desc": {
+            "en": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "de": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "ru": "Список дат RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "pt": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "nl": "Liest Daten von RMB BHKWs (vb. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "fr": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "it": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "es": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "pl": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "zh-cn": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus"
+        },
+        "authors": [
+            "satchafunkilus <tobi.as@me.com>"
+        ],
+        "keywords": [
+            "ioBroker",
+            "template",
+            "Smart Home",
+            "home automation"
+        ],
+        "license": "MIT",
+        "platform": "Javascript/Node.js",
+        "main": "main.js",
+        "icon": "rmb-bhkw.png",
+        "enabled": true,
+        "extIcon": "https://raw.githubusercontent.com/satchafunkilus/ioBroker.rmb-bhkw/main/admin/rmb-bhkw.png",
+        "readme": "https://github.com/satchafunkilus/ioBroker.rmb-bhkw/blob/main/README.md",
+        "loglevel": "info",
+        "mode": "schedule",
+        "schedule": "*/5 * * * *",
+        "type": "energy",
+        "compact": true,
+        "connectionType": "cloud",
+        "dataSource": "poll",
+        "materialize": true,
+        "dependencies": [
+            {
+                "js-controller": ">=2.0.0"
+            }
+        ]
+    },
+    "native": {
+        "bhkwID": 9999,
+        "browserPath": "ws://localhost:3000"
+    },
+    "objects": [],
+    "instanceObjects": []
+}
