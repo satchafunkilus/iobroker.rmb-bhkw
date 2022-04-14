@@ -9,7 +9,7 @@
 
 **Tests:** ![Test and Release](https://github.com/satchafunkilus/ioBroker.rmb-bhkw/workflows/Test%20and%20Release/badge.svg)
 
-## RMB BHKW Adapter for ioBroker
+## RMB BHKW Adapter für ioBroker
 
 Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal (rmbenergie.com) aus und stellt diese als Objekte in ioBroker zur Verfügung.
 
