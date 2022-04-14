@@ -1,19 +1,17 @@
-![Logo](admin/rmb-bhkw.png)
+![Logo](admin/neoTower.png)
 # ioBroker.rmb-bhkw
 
 [![NPM version](https://img.shields.io/npm/v/iobroker.rmb-bhkw.svg)](https://www.npmjs.com/package/iobroker.rmb-bhkw)
 [![Downloads](https://img.shields.io/npm/dm/iobroker.rmb-bhkw.svg)](https://www.npmjs.com/package/iobroker.rmb-bhkw)
 ![Number of Installations](https://iobroker.live/badges/rmb-bhkw-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/rmb-bhkw-stable.svg)
-[![Dependency Status](https://img.shields.io/david/satchafunkilus/iobroker.rmb-bhkw.svg)](https://david-dm.org/satchafunkilus/iobroker.rmb-bhkw)
-
 [![NPM](https://nodei.co/npm/iobroker.rmb-bhkw.png?downloads=true)](https://nodei.co/npm/iobroker.rmb-bhkw/)
 
 **Tests:** ![Test and Release](https://github.com/satchafunkilus/ioBroker.rmb-bhkw/workflows/Test%20and%20Release/badge.svg)
 
 ## rmb-bhkw adapter for ioBroker
 
-Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus
+Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal (rmbenergie.com) aus.
 
 ## Developer manual
 This section is intended for the developer. It can be deleted later
