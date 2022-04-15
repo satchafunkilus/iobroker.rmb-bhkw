@@ -11,7 +11,7 @@
 
 ## RMB BHKW Adapter für ioBroker
 
-Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal [rmbenergie.com](https://www.rmbenergie.com/login-report/)) aus und stellt diese als Objekte in ioBroker zur Verfügung. Somit kann auch ohne die optionale ModBus Schnittstelle der Anlage auf die Daten zugegriffen werden.
+Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal [rmbenergie.com](https://www.rmbenergie.com/login-report/) aus und stellt diese als Objekte in ioBroker zur Verfügung. Somit kann auch ohne die optionale ModBus Schnittstelle der Anlage auf die Daten zugegriffen werden.
 
 
 ## Verwendung
@@ -38,27 +38,8 @@ docker run -p 3000:3000 browserless/chrome
 ausgeführt werden und ist dann unter `http://[IP-des-docker-hosts]:3000` zu erreichen. Erscheint die Weboberfläche des Containers, so funktioniert er wie erwartet und der entprechende Pfad kann in der Adapterkonfiguration eingegeben werden. 
 
 
-
-### Publishing the adapter
-Using GitHub Actions, you can enable automatic releases on npm whenever you push a new git tag that matches the form 
-`v<major>.<minor>.<patch>`. We **strongly recommend** that you do. The necessary steps are described in `.github/workflows/test-and-release.yml`.
-
-Since you installed the release script, you can create a new
-release simply by calling:
-```bash
-npm run release
-```
-Additional command line options for the release script are explained in the
-[release-script documentation](https://github.com/AlCalzone/release-script#command-line).
-
-To get your adapter released in ioBroker, please refer to the documentation 
-of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#requirements-for-adapter-to-get-added-to-the-latest-repository).
-
-
 ## Changelog
-<!--
-	Placeholder for the next version (at the beginning of the line):
--->
+
 ### 1.0.0-0 (2022-04-15)
 * (satchafunkilus) First functional release
 
