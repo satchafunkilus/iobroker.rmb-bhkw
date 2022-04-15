@@ -30,14 +30,21 @@ class RmbBhkw extends utils.Adapter {
 		// this.config:
 
 		const bhkwID = this.config.bhkwID;
-		const browserPath = this.config.bhkwID;
-
-		this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
-		this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
+		const browserPath = this.config.browserPath; //To-Do: Reformatierung des Browserpath zu "ws://"
+		const externalBrowser = this.config.externalBrowser;
+		let browser;
 
 		try {
+			this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
+			if (externalBrowser) {
+				this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
+				browser = await puppeteer.connect({ browserWSEndpoint: browserPath });
+			} else {
+				this.log.info('Verwende den integrierten Browser');
+				browser = await puppeteer.launch();
+			}
 
-			const browser = await puppeteer.launch();
+
 			const page = await browser.newPage();
 			await page.goto('https://rmbenergie.de/rmbreport_br/messwerte.php?ident=' + bhkwID);
 			await page.waitForSelector('.auto-style3');
@@ -46,7 +53,7 @@ class RmbBhkw extends utils.Adapter {
 				return items.map(x => x.innerHTML);
 			});
 
-			this.log.info(data);
+			this.log.info(data.toString());
 
 
 
