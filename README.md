@@ -30,7 +30,7 @@ sudo apt install -y ca-certificates fonts-liberation libappindicator3-1 libasoun
 Sollte ioBroker auf einem anderen Betriebssystem installiert sein, so heissen die Paketnamen der Abhängigkeiten womöglich anders - eine schnelle Google-Suche hilft hier vermutlich weiter. Diese müssen dann für das jeweilige Betriebssystem nachinstalliert werden. Alternativ kann auch auf die Verwendung eines externen Browsers umgeschwenkt werden (siehe Kapitel: Verwendung mit Docker).
 
 ### Verwendung mit Docker
-Läuft ioBroker in einem Docker-Container und der mitgelieferte Browser kann aufgrund fehlender Abhängigkeiten nicht genutzt werden, so empfiehlt es sich den Chromium Browser als separaten Container auszuführen. Hierzu empfiehlt sich z.B. das Image [browserless/chrome]{https://hub.docker.com/r/browserless/chrome/}. Dieses Image kann z.B. mit dem Befehl
+Läuft ioBroker in einem Docker-Container und der mitgelieferte Browser kann aufgrund fehlender Abhängigkeiten nicht genutzt werden, so empfiehlt es sich den Chromium Browser als separaten Container auszuführen. Hierzu empfiehlt sich z.B. das Image [browserless/chrome](https://hub.docker.com/r/browserless/chrome/). Dieses Image kann z.B. mit dem Befehl
 
 ```
 docker run -p 3000:3000 browserless/chrome
