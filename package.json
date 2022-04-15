@@ -3,8 +3,7 @@
   "version": "1.0.0-0",
   "description": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
   "author": {
-    "name": "satchafunkilus",
-    "email": "tobi.as@me.com"
+    "name": "satchafunkilus"
   },
   "homepage": "https://github.com/satchafunkilus/ioBroker.rmb-bhkw",
   "license": "MIT",
