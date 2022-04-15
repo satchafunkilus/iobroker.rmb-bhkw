@@ -59,7 +59,7 @@ of [ioBroker.repositories](https://github.com/ioBroker/ioBroker.repositories#req
 <!--
 	Placeholder for the next version (at the beginning of the line):
 -->
-### **WORK IN PROGRESS**
+### 1.0.0-0 (2022-04-15)
 * (satchafunkilus) First functional release
 
 ### 0.0.2 (2022-04-15)
