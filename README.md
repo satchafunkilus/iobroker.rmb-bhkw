@@ -31,7 +31,7 @@ Läuft ioBroker in einem Docker-Container und der mitgelieferte Browser kann auf
 ```
 docker run -p 3000:3000 browserless/chrome
 ```
-ausgeführt werden und ist dann unter `http://[IP-des-docker-hosts]:3000' zu erreichen. Erscheint die Weboberfläche des Containers, so funktioniert er wie erwartet und der entprechende Pfad kann in der Adapterkonfiguration eingegeben werden. 
+ausgeführt werden und ist dann unter `http://[IP-des-docker-hosts]:3000` zu erreichen. Erscheint die Weboberfläche des Containers, so funktioniert er wie erwartet und der entprechende Pfad kann in der Adapterkonfiguration eingegeben werden. 
 
 
 
