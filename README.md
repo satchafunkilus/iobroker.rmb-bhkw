@@ -18,14 +18,14 @@ Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal
 
 Der Adapter nutzt eine headless-Version des Chromium Browsers um die Daten aus dem Kundenportal zu parsen. Hierzu kann entweder die vom Adapter mitgelieferte Chromium version verwendet werden, oder eine externe. 
 
-# Mitgelieferte Version von Chrome
+### Mitgelieferte Version von Chrome
 Wenn die mitgelieferte verwendet werden soll, so müssen auf dem Host-System von ioBroker die Abhängigkeiten von Chromium erfüllt sein. Diese können bei einem Debian/Ubuntu-System nachinstalliert werden mit:
 
 ```
 sudo apt install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 ```
 
-# Verwendung mit Docker
+### Verwendung mit Docker
 Läuft ioBroker in einem Docker-Container und der mitgelieferte Browser kann aufgrund fehlender Abhängigkeiten nicht genutzt werden, so empfiehlt es sich den Chromium Browser als separaten Container auszuführen. Hierzu empfiehlt sich z.B. das Image [browserless/chrome]{https://hub.docker.com/r/browserless/chrome/}. Dieses Image kann z.B. mit dem Befehl
 
 ```
