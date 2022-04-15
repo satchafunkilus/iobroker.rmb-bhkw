@@ -6,6 +6,8 @@
 ![Number of Installations](https://iobroker.live/badges/rmb-bhkw-installed.svg)
 ![Current version in stable repository](https://iobroker.live/badges/rmb-bhkw-stable.svg)
 ![Test and Release](https://github.com/satchafunkilus/ioBroker.rmb-bhkw/workflows/Test%20and%20Release/badge.svg)
+
+
 [![NPM](https://nodei.co/npm/iobroker.rmb-bhkw.png?downloads=true)](https://nodei.co/npm/iobroker.rmb-bhkw/)
 
 
