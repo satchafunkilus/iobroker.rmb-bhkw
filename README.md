@@ -11,21 +11,23 @@
 
 ## RMB BHKW Adapter für ioBroker
 
-Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal (rmbenergie.com) aus und stellt diese als Objekte in ioBroker zur Verfügung.
+Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal (rmbenergie.com) aus und stellt diese als Objekte in ioBroker zur Verfügung. Somit kann auch ohne die optionale ModBus Schnittstelle der Anlage auf die Daten zugegriffen werden.
 
 
 ## Verwendung
 
-Der Adapter nutzt eine headless-Version des Chromium Browsers um die Daten aus dem Kundenportal zu parsen. Hierzu kann entweder die vom Adapter mitgelieferte Chromium version verwendet werden, oder eine externe. 
+Der Adapter läuft als "scheduled" Adapter und zieht sich die Daten im angegebenen Intervall aus dem Kundenportal. Die Anlage selbst pusht die Daten nur ca. alle 15min zum Kundenportal, somit sind die Daten leider keine Echtzeitdaten. Ebenso macht es daher wenig Sinn das Intervall des Adapters auf einen sehr kleinen Zeitraum zu stellen. Der Defaultwert für die Datenabfrage ist 5min.
+
+Der Adapter nutzt eine headless-Version des Chromium Browsers um die Daten aus dem Kundenportal zu parsen. Hierzu kann entweder die vom Adapter mitgelieferte Chromium-Version verwendet werden, oder eine externe. 
 
 ### Mitgelieferte Version von Chrome
-Wenn die mitgelieferte verwendet werden soll, so müssen auf dem Host-System von ioBroker die Abhängigkeiten von Chromium erfüllt sein. Diese können beispielsweise bei einem Debian/Ubuntu-System nachinstalliert werden mit:
+Wenn die mitgelieferte verwendet werden soll, so müssen auf dem Host-System von ioBroker die Abhängigkeiten von Chromium erfüllt sein. Sollte eine dieser Abhängigkeiten fehlen, so wirft der Adapter einen Fehler im Log, mit der Angabe der fehlenden Library. Diese können beispielsweise bei einem Debian/Ubuntu-System nachinstalliert werden mit:
 
 ```
 sudo apt install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 ```
 
-Sollte ioBroker auf einem anderen Betriebssystem installiert sein und Abhängigkeiten fehlen, so wirft der Adapter einen Fehler im Log, dass eine gewisse Abhängigkeit fehlt. Diese muss dann für das jeweilige Betriebssystem nachinstalliert werden. Alternativ kann auch auf die Verwendung eines externen Browser umgeschwenkt werden (siehe Kapitel: Verwendung mit Docker).
+Sollte ioBroker auf einem anderen Betriebssystem installiert sein, so heissen die Paketnamen der Abhängigkeiten womöglich anders - eine schnelle Google-Suche hilft hier vermutlich weiter. Diese müssen dann für das jeweilige Betriebssystem nachinstalliert werden. Alternativ kann auch auf die Verwendung eines externen Browsers umgeschwenkt werden (siehe Kapitel: Verwendung mit Docker).
 
 ### Verwendung mit Docker
 Läuft ioBroker in einem Docker-Container und der mitgelieferte Browser kann aufgrund fehlender Abhängigkeiten nicht genutzt werden, so empfiehlt es sich den Chromium Browser als separaten Container auszuführen. Hierzu empfiehlt sich z.B. das Image [browserless/chrome]{https://hub.docker.com/r/browserless/chrome/}. Dieses Image kann z.B. mit dem Befehl

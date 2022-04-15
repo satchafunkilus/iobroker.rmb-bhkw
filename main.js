@@ -25,11 +25,16 @@ class RmbBhkw extends utils.Adapter {
 
 		const bhkwID = this.config.bhkwID;
 		const re = /^.*:\/\//;
-		const browserPath = 'ws://' + this.config.browserPath.replace(re, ''); //To-Do: Reformatierung des Browserpath zu "ws://"
+		const browserPath = 'ws://' + this.config.browserPath.replace(re, '');
 		const externalBrowser = this.config.externalBrowser;
 		let browser;
 		const results = [];
 
+		if (bhkwID < 800 || bhkwID > 99999 || bhkwID == undefined) {
+			this.log.error('Ungültige BHKW ID. Stoppe Adapter.');
+			// @ts-ignore
+			this.stop();
+		}
 
 		try {
 			this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
@@ -84,7 +89,7 @@ class RmbBhkw extends utils.Adapter {
 			const date = timeString[2].split(',')[0];
 
 
-			await page.goto('https://rmbenergie.de/rmbreport_br/display.php?ident=5282');
+			await page.goto('https://rmbenergie.de/rmbreport_br/display.php?ident=' + bhkwID);
 			await page.waitForSelector('div#ladungszahl');
 			// @ts-ignore
 			const stateOfCharge = await page.$eval('div#ladungszahl', (e) => e.innerText.split(' ')[0]);
