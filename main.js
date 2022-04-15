@@ -1,15 +1,7 @@
 'use strict';
 
-/*
- * Created with @iobroker/create-adapter v2.1.1
- */
-
-// The adapter-core module gives you access to the core ioBroker functions
-// you need to create an adapter
 const utils = require('@iobroker/adapter-core');
-
-// Load your modules here, e.g.:
-// const fs = require("fs");
+const puppeteer = require('puppeteer');
 
 class RmbBhkw extends utils.Adapter {
 
@@ -44,6 +36,19 @@ class RmbBhkw extends utils.Adapter {
 		this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
 
 		try {
+
+			const browser = await puppeteer.launch();
+			const page = await browser.newPage();
+			await page.goto('https://rmbenergie.de/rmbreport_br/messwerte.php?ident=' + bhkwID);
+			await page.waitForSelector('.auto-style3');
+			const data = await page.$$eval('.auto-style3, .auto-style4', (items) => {
+				console.log(items);
+				return items.map(x => x.innerHTML);
+			});
+
+			this.log.info(data);
+
+
 
 			await this.setObjectNotExistsAsync('testVariable', {
 				type: 'state',
