@@ -11,7 +11,7 @@
 
 ## RMB BHKW Adapter für ioBroker
 
-Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal (rmbenergie.com) aus und stellt diese als Objekte in ioBroker zur Verfügung. Somit kann auch ohne die optionale ModBus Schnittstelle der Anlage auf die Daten zugegriffen werden.
+Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMB Energie Kundenportal [rmbenergie.com](https://www.rmbenergie.com/login-report/)) aus und stellt diese als Objekte in ioBroker zur Verfügung. Somit kann auch ohne die optionale ModBus Schnittstelle der Anlage auf die Daten zugegriffen werden.
 
 
 ## Verwendung
