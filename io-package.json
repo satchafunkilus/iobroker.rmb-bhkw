@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "rmb-bhkw",
-        "version": "1.0.0-0",
+        "version": "1.0.0",
         "news": {
-            "1.0.0-0": {
+            "1.0.0": {
                 "en": "First functional release",
                 "de": "Erste funktionale Version",
                 "ru": "Первый функциональный релиз",
