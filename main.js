@@ -33,6 +33,8 @@ class RmbBhkw extends utils.Adapter {
 		const browserPath = this.config.browserPath; //To-Do: Reformatierung des Browserpath zu "ws://"
 		const externalBrowser = this.config.externalBrowser;
 		let browser;
+		const results = [];
+
 
 		try {
 			this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
@@ -53,21 +55,65 @@ class RmbBhkw extends utils.Adapter {
 				return items.map(x => x.innerHTML);
 			});
 
-			this.log.info(data.toString());
 
 
+			for (let i = 0; i < 54; i++ ) {
+				//console.log(items[i])
+				const unit = data[i+1].split(' ')[1];
+				let dataType = 'mixed';
+				if (unit === '°C' || unit === 'kW' || unit === '%' || unit === 'bar') {
+					dataType = 'number';
+				}
 
-			await this.setObjectNotExistsAsync('testVariable', {
-				type: 'state',
-				common: {
-					name: 'testVariable',
-					type: 'boolean',
-					role: 'indicator',
-					read: true,
-					write: true,
-				},
-				native: {},
+				results.push({
+					name: data[i].split(':')[0].replace(/\s\(.+\)/, ''),
+					value: data[i+1].split(' ')[0],
+					unit: unit,
+					type: dataType
+				});
+				i++;
+			}
+
+
+			//Hole Timestamp von Seite
+			// @ts-ignore
+			const timeString = await page.$eval('.auto-style5', (e) => e.innerText.split(' '));
+			const time = timeString[3];
+			const date = timeString[2].split(',')[0];
+
+
+			await page.goto('https://rmbenergie.de/rmbreport_br/display.php?ident=5282');
+			await page.waitForSelector('div#ladungszahl');
+			// @ts-ignore
+			const stateOfCharge = await page.$eval('div#ladungszahl', (e) => e.innerText.split(' ')[0]);
+
+			await browser.close();
+
+			//Berechne alter der Daten
+			const now = new Date();
+			const dateSplit = date.split('.');
+			const timeSplit = time.split(':');
+			const timeStamp = new Date(dateSplit[2], dateSplit[1]-1, dateSplit[0], timeSplit[0], timeSplit[1], timeSplit[2]);
+			const dataAge = Math.floor((now.valueOf() - timeStamp.valueOf())/1000/60);
+			results.push({
+				name: '_DateLastRefresh',
+				value: date,
+				type: 'number',
+				unit: ''
 			});
+
+			this.createAndUpdateStates(results);
+
+			//Debug
+			this.log.info(results[10].name);
+			this.log.info(results[10].value);
+			this.log.info(results[10].unit);
+			this.log.info(results[10].type);
+			this.log.info('Ladestand Speicher: ' + stateOfCharge);
+			this.log.info('Alter der Daten:' + dataAge);
+
+
+
 
 
 
@@ -111,6 +157,36 @@ class RmbBhkw extends utils.Adapter {
 
 
 	}
+
+
+	async createAndUpdateStates(results){
+		try {
+			//Todo
+			for (const dataPoint of results) {
+				await this.setObjectNotExistsAsync(dataPoint.name, {
+					type: 'state',
+					common: {
+						name: dataPoint.name,
+						type: dataPoint.type,
+						role: 'state',
+						read: true,
+						write: true,
+						unit: dataPoint.unit
+					},
+					native: {},
+				});
+				await this.setStateAsync(dataPoint.name, {val: dataPoint.value, ack: true});
+			}
+
+		} catch (error) {
+			this.log.error(`[Craating States] error: ${error}`);
+		}
+	}
+
+
+
+
+
 
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
