@@ -98,8 +98,26 @@ class RmbBhkw extends utils.Adapter {
 			results.push({
 				name: '_DateLastRefresh',
 				value: date,
-				type: 'number',
+				type: 'string',
 				unit: ''
+			},
+			{
+				name: '_TimeLastRefresh',
+				value: time,
+				type: 'string',
+				unit: ''
+			},
+			{
+				name: '_DataAge',
+				value: dataAge,
+				type: 'number',
+				unit: 'min'
+			},
+			{
+				name: 'Ladestand Warmwasserspeicher',
+				value: stateOfCharge,
+				type: 'number',
+				unit: '%'
 			});
 
 			this.createAndUpdateStates(results);
@@ -161,8 +179,14 @@ class RmbBhkw extends utils.Adapter {
 
 	async createAndUpdateStates(results){
 		try {
-			//Todo
+
 			for (const dataPoint of results) {
+				//Konvertiere Nummern zum Datentyp number
+				if (dataPoint.type === 'number') {dataPoint.value = parseFloat(dataPoint.value);}
+				if (dataPoint.value === 'AUF' || dataPoint.value == 'EIN') {dataPoint.value = true;}
+				if (dataPoint.value === 'ZU' || dataPoint.value == 'AUS') {dataPoint.value = false;}
+
+
 				await this.setObjectNotExistsAsync(dataPoint.name, {
 					type: 'state',
 					common: {
