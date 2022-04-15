@@ -42,7 +42,7 @@ ausgeführt werden und ist dann unter `http://[IP-des-docker-hosts]:3000` zu err
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.0.1 (2022-04-15)
 * Fixed versioning issue in io-package.json
 
 ### 1.0.0 (2022-04-15)
