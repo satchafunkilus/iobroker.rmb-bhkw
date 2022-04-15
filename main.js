@@ -20,17 +20,12 @@ class RmbBhkw extends utils.Adapter {
 		this.on('unload', this.onUnload.bind(this));
 	}
 
-	/**
-	 * Is called when databases are connected and adapter received configuration.
-	 */
-	async onReady() {
-		// Initialize your adapter here
 
-		// The adapters config (in the instance object everything under the attribute "native") is accessible via
-		// this.config:
+	async onReady() {
 
 		const bhkwID = this.config.bhkwID;
-		const browserPath = this.config.browserPath; //To-Do: Reformatierung des Browserpath zu "ws://"
+		const re = /^.*:\/\//;
+		const browserPath = 'ws://' + this.config.browserPath.replace(re, ''); //To-Do: Reformatierung des Browserpath zu "ws://"
 		const externalBrowser = this.config.externalBrowser;
 		let browser;
 		const results = [];
@@ -40,13 +35,20 @@ class RmbBhkw extends utils.Adapter {
 			this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
 			if (externalBrowser) {
 				this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
-				browser = await puppeteer.connect({ browserWSEndpoint: browserPath });
+				try {
+					browser = await puppeteer.connect({ browserWSEndpoint: browserPath });
+				} catch (error) {
+					this.log.error('Konnte keine Verbindung zum externen Browser herstellen. Ist die URL korrekt?');
+					// @ts-ignore
+					this.stop();
+				}
 			} else {
 				this.log.info('Verwende den integrierten Browser');
 				browser = await puppeteer.launch();
 			}
 
 
+			// @ts-ignore
 			const page = await browser.newPage();
 			await page.goto('https://rmbenergie.de/rmbreport_br/messwerte.php?ident=' + bhkwID);
 			await page.waitForSelector('.auto-style3');
@@ -56,9 +58,9 @@ class RmbBhkw extends utils.Adapter {
 			});
 
 
-
+			// Iterate through node-list and store results as object properties
 			for (let i = 0; i < 54; i++ ) {
-				//console.log(items[i])
+
 				const unit = data[i+1].split(' ')[1];
 				let dataType = 'mixed';
 				if (unit === '°C' || unit === 'kW' || unit === '%' || unit === 'bar') {
@@ -75,7 +77,7 @@ class RmbBhkw extends utils.Adapter {
 			}
 
 
-			//Hole Timestamp von Seite
+			//Get timestamp of last data refresh from website
 			// @ts-ignore
 			const timeString = await page.$eval('.auto-style5', (e) => e.innerText.split(' '));
 			const time = timeString[3];
@@ -87,9 +89,10 @@ class RmbBhkw extends utils.Adapter {
 			// @ts-ignore
 			const stateOfCharge = await page.$eval('div#ladungszahl', (e) => e.innerText.split(' ')[0]);
 
+			// @ts-ignore
 			await browser.close();
 
-			//Berechne alter der Daten
+			//Calculate time passed since last data refresh
 			const now = new Date();
 			const dateSplit = date.split('.');
 			const timeSplit = time.split(':');
@@ -120,50 +123,16 @@ class RmbBhkw extends utils.Adapter {
 				unit: '%'
 			});
 
+			this.log.info('Holen der Daten erfolgreich.');
 			this.createAndUpdateStates(results);
 
 			//Debug
-			this.log.info(results[10].name);
-			this.log.info(results[10].value);
-			this.log.info(results[10].unit);
-			this.log.info(results[10].type);
-			this.log.info('Ladestand Speicher: ' + stateOfCharge);
-			this.log.info('Alter der Daten:' + dataAge);
-
-
-
-
-
-
-			/* Beispiele für subscribe und setState
-			// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
-			//this.subscribeStates('testVariable');
-			// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
-			// this.subscribeStates('lights.*');
-			// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-			// this.subscribeStates('*');
-
-
-			//setState examples
-			//you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-
-			// the variable testVariable is set to true as command (ack=false)
-			//await this.setStateAsync('testVariable', true);
-
-			// same thing, but the value is flagged "ack"
-			// ack should be always set to true if the value is received from or acknowledged from the target system
-			//await this.setStateAsync('testVariable', { val: true, ack: true });
-
-			// same thing, but the state is deleted after 30s (getState will return null afterwards)
-			//await this.setStateAsync('testVariable', { val: true, ack: true, expire: 30 });
-
-			// examples for the checkPassword/checkGroup functions
-			//let result = await this.checkPasswordAsync('admin', 'iobroker');
-			//this.log.info('check user admin pw iobroker: ' + result);
-
-			//result = await this.checkGroupAsync('admin', 'admin');
-			//this.log.info('check group user admin group admin: ' + result);
-			*/
+			// this.log.info(results[10].name);
+			// this.log.info(results[10].value);
+			// this.log.info(results[10].unit);
+			// this.log.info(results[10].type);
+			// this.log.info('Ladestand Speicher: ' + stateOfCharge);
+			// this.log.info('Alter der Daten:' + dataAge);
 
 		} catch (error) {
 			this.log.error(`[onReady] error: ${error}`);
@@ -179,7 +148,7 @@ class RmbBhkw extends utils.Adapter {
 
 	async createAndUpdateStates(results){
 		try {
-
+			this.log.info('Aktualisiere States in ioBroker.');
 			for (const dataPoint of results) {
 				//Konvertiere Nummern zum Datentyp number
 				if (dataPoint.type === 'number') {dataPoint.value = parseFloat(dataPoint.value);}
