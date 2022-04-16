@@ -83,26 +83,52 @@ class RmbBhkw extends utils.Adapter {
 			//Get timestamp of last data refresh from website
 			// @ts-ignore
 			const timeString = await page.$eval('.auto-style5', (e) => e.innerText.split(' '));
-			const time = timeString[3];
-			const date = timeString[2].split(',')[0];
-
-			if (date === '01.01.1970' || date == undefined) {
-				throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
-			}
 
 
 			await page.goto('https://rmbenergie.de/rmbreport_br/display.php?ident=' + bhkwID);
 			await page.waitForSelector('div#ladungszahl');
 			// @ts-ignore
 			const stateOfCharge = await page.$eval('div#ladungszahl', (e) => e.innerText.split(' ')[0]);
+			results.push({
+				name: 'Ladestand Warmwasserspeicher',
+				value: stateOfCharge,
+				type: 'number',
+				unit: '%'
+			});
 
 			// @ts-ignore
 			await browser.close();
 
-			//Calculate time passed since last data refresh
+
+
+			//Extract dates from string
+			const time = timeString[3];
+			const date = timeString[2].split(',')[0];
 			const now = new Date();
 			const dateSplit = date.split('.');
 			const timeSplit = time.split(':');
+
+			//If Server is offline, update _DataAge state and quit adapter.
+			if (date === '01.01.1970' || date == undefined) {
+				//Get current states from objects
+				const oldDateString = await this.getStateAsync('_DateLastRefresh');
+				const oldTimeString = await this.getStateAsync('_TimeLastRefresh');
+				//If objects do not exist (first time starting adapter), exit immediately
+				if(!oldDateString || !oldTimeString) {
+					throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+				}
+				// @ts-ignore
+				const oldDateSplit = oldDateString.val.toString().split('.');
+				// @ts-ignore
+				const oldTimeSplit = oldTimeString.val.toString().split(':');
+				// @ts-ignore
+				const oldTimeStamp = new Date(oldDateSplit[2], oldDateSplit[1]-1, oldDateSplit[0], oldTimeSplit[0], oldTimeSplit[1], oldTimeSplit[2]);
+				const oldDataAge = Math.floor((now.valueOf() - oldTimeStamp.valueOf())/1000/60);
+				await this.setStateAsync('_DataAge', {val: oldDataAge, ack: true});
+				throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+			}
+
+			//Calculate time passed since last data refresh
 			const timeStamp = new Date(dateSplit[2], dateSplit[1]-1, dateSplit[0], timeSplit[0], timeSplit[1], timeSplit[2]);
 			const dataAge = Math.floor((now.valueOf() - timeStamp.valueOf())/1000/60);
 			results.push({
@@ -122,12 +148,6 @@ class RmbBhkw extends utils.Adapter {
 				value: dataAge,
 				type: 'number',
 				unit: 'min'
-			},
-			{
-				name: 'Ladestand Warmwasserspeicher',
-				value: stateOfCharge,
-				type: 'number',
-				unit: '%'
 			});
 
 			this.log.info('Holen der Daten erfolgreich.');
@@ -182,9 +202,6 @@ class RmbBhkw extends utils.Adapter {
 			this.log.error(`Fehler beim Speichern der Daten: ${error}`);
 		}
 	}
-
-
-
 
 
 
