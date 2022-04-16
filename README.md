@@ -38,7 +38,7 @@ ausgeführt werden und ist dann unter `http://[IP-des-docker-hosts]:3000` zu err
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.0.3 (2022-04-16)
 * Improved handling of errors (Adapter does no longer pull data when server is offline, leading to empty/null states)
 
 ### 1.0.2 (2022-04-15)
