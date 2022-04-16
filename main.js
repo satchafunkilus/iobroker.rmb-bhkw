@@ -30,22 +30,20 @@ class RmbBhkw extends utils.Adapter {
 		let browser;
 		const results = [];
 
-		if (bhkwID < 800 || bhkwID > 99999 || bhkwID == undefined) {
-			this.log.error('Ungültige BHKW ID. Stoppe Adapter.');
-			// @ts-ignore
-			this.stop();
-		}
-
 		try {
+
+			if (bhkwID < 800 || bhkwID > 99999 || bhkwID == undefined) {
+				throw new Error('Ungültige BHKW ID. Stoppe Adapter.');
+			}
+
+
 			this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
 			if (externalBrowser) {
 				this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
 				try {
 					browser = await puppeteer.connect({ browserWSEndpoint: browserPath });
 				} catch (error) {
-					this.log.error('Konnte keine Verbindung zum externen Browser herstellen. Ist die URL korrekt?');
-					// @ts-ignore
-					this.stop();
+					throw new Error('Konnte keine Verbindung zum externen Browser herstellen. Ist die URL korrekt?');
 				}
 			} else {
 				this.log.info('Verwende den integrierten Browser');
@@ -87,6 +85,10 @@ class RmbBhkw extends utils.Adapter {
 			const timeString = await page.$eval('.auto-style5', (e) => e.innerText.split(' '));
 			const time = timeString[3];
 			const date = timeString[2].split(',')[0];
+
+			if (date === '01.01.1970' || date == undefined) {
+				throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+			}
 
 
 			await page.goto('https://rmbenergie.de/rmbreport_br/display.php?ident=' + bhkwID);
@@ -140,7 +142,7 @@ class RmbBhkw extends utils.Adapter {
 			// this.log.info('Alter der Daten:' + dataAge);
 
 		} catch (error) {
-			this.log.error(`[onReady] error: ${error}`);
+			this.log.error(`Fehler beim Datenabruf: ${error}`);
 		} finally {
 		//Terminate Adapter until next Schedule
 			// @ts-ignore
@@ -177,7 +179,7 @@ class RmbBhkw extends utils.Adapter {
 			}
 
 		} catch (error) {
-			this.log.error(`[Craating States] error: ${error}`);
+			this.log.error(`Fehler beim Speichern der Daten: ${error}`);
 		}
 	}
 
