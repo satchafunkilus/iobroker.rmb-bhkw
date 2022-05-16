@@ -71,7 +71,7 @@ and is then accessible at `http://[IP-of-docker-host]:3000`. If the web interfac
 
 
 ## Changelog
-### **WORK IN PROGRESS**
+### 1.0.4 (2022-05-16)
 * Missing dependencies for chromium are now installed automatically, therefore internal browser should also work in docker container
 * Added random delay in polling of data to prevent DDoS on RMB servers
 * Code cleanup
