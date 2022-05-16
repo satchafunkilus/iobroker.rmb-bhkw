@@ -14,7 +14,6 @@ class RmbBhkw extends utils.Adapter {
 			name: 'rmb-bhkw',
 		});
 		this.on('ready', this.onReady.bind(this));
-		this.on('stateChange', this.onStateChange.bind(this));
 		// this.on('objectChange', this.onObjectChange.bind(this));
 		// this.on('message', this.onMessage.bind(this));
 		this.on('unload', this.onUnload.bind(this));
@@ -29,6 +28,19 @@ class RmbBhkw extends utils.Adapter {
 		const externalBrowser = this.config.externalBrowser;
 		let browser;
 		const results = [];
+		await this.setObjectNotExistsAsync('_DataAge', {
+			type: 'state',
+			common: {
+				name: '_DataAge',
+				type: 'state',
+				role: 'state',
+				// @ts-ignore
+				read: true,
+				write: true,
+				unit: 'min'
+			},
+			native: {},
+		});
 
 		try {
 
@@ -124,6 +136,7 @@ class RmbBhkw extends utils.Adapter {
 				// @ts-ignore
 				const oldTimeStamp = new Date(oldDateSplit[2], oldDateSplit[1]-1, oldDateSplit[0], oldTimeSplit[0], oldTimeSplit[1], oldTimeSplit[2]);
 				const oldDataAge = Math.floor((now.valueOf() - oldTimeStamp.valueOf())/1000/60);
+
 				await this.setStateAsync('_DataAge', {val: oldDataAge, ack: true});
 				throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
 			}
@@ -151,7 +164,7 @@ class RmbBhkw extends utils.Adapter {
 			});
 
 			this.log.info('Holen der Daten erfolgreich.');
-			this.createAndUpdateStates(results);
+			await this.createAndUpdateStates(results);
 
 			//Debug
 			// this.log.info(results[10].name);
@@ -219,22 +232,6 @@ class RmbBhkw extends utils.Adapter {
 			callback();
 		} catch (e) {
 			callback();
-		}
-	}
-
-
-	/**
-	 * Is called if a subscribed state changes
-	 * @param {string} id
-	 * @param {ioBroker.State | null | undefined} state
-	 */
-	onStateChange(id, state) {
-		if (state) {
-			// The state was changed
-			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
-		} else {
-			// The state was deleted
-			this.log.info(`state ${id} deleted`);
 		}
 	}
 }
