@@ -7,8 +7,8 @@
 
 [![NPM](https://nodei.co/npm/iobroker.rmb-bhkw.png?downloads=true)](https://nodei.co/npm/iobroker.rmb-bhkw/)
 
-**English version below**
-------
+*(English version below)*
+---
 
 ## RMB BHKW Adapter für ioBroker
 
@@ -38,7 +38,7 @@ docker run -p 3000:3000 browserless/chrome
 ```
 ausgeführt werden und ist dann unter `http://[IP-des-docker-hosts]:3000` zu erreichen. Erscheint die Weboberfläche des Containers, so funktioniert er wie erwartet und der entprechende Pfad kann in der Adapterkonfiguration eingegeben werden. 
 
------
+---
 # English version
 
 ## RMB CHP Adapter for ioBroker
