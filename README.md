@@ -22,16 +22,16 @@ Der Adapter läuft als "scheduled" Adapter und zieht sich die Daten im angegeben
 Der Adapter nutzt eine headless-Version des Chromium Browsers um die Daten aus dem Kundenportal zu parsen. Hierzu kann entweder die vom Adapter mitgelieferte Chromium-Version verwendet werden, oder eine externe. 
 
 ### Mitgelieferte Version von Chrome
-Wenn die mitgelieferte verwendet werden soll, so müssen auf dem Host-System von ioBroker die Abhängigkeiten von Chromium erfüllt sein. Sollte eine dieser Abhängigkeiten fehlen, so wirft der Adapter einen Fehler im Log, mit der Angabe der fehlenden Library. Diese können beispielsweise bei einem Debian/Ubuntu-System nachinstalliert werden mit:
+Wenn die mitgelieferte verwendet werden soll, so müssen auf dem Host-System von ioBroker die Abhängigkeiten von Chromium erfüllt sein. Der Adapter versucht fehlende Abhängigkeiten bei der Installation selbst zu installieren. Sollte eine dieser Abhängigkeiten fehlen, so wirft der Adapter einen Fehler im Log, mit der Angabe der fehlenden Library. Diese können beispielsweise bei einem Debian/Ubuntu-System nachinstalliert werden mit:
 
 ```
 sudo apt install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 ```
 
-Sollte ioBroker auf einem anderen Betriebssystem installiert sein, so heissen die Paketnamen der Abhängigkeiten womöglich anders - eine schnelle Google-Suche hilft hier vermutlich weiter. Diese müssen dann für das jeweilige Betriebssystem nachinstalliert werden. Alternativ kann auch auf die Verwendung eines externen Browsers umgeschwenkt werden (siehe Kapitel: Verwendung mit Docker).
+Sollte ioBroker auf einem anderen Betriebssystem installiert sein, so heissen die Paketnamen der Abhängigkeiten womöglich anders - eine schnelle Google-Suche hilft hier vermutlich weiter. Diese müssen dann für das jeweilige Betriebssystem nachinstalliert werden. Alternativ kann auch auf die Verwendung eines externen Browsers umgeschwenkt werden.
 
-### Verwendung mit Docker
-Läuft ioBroker in einem Docker-Container und der mitgelieferte Browser kann aufgrund fehlender Abhängigkeiten nicht genutzt werden, so empfiehlt es sich den Chromium Browser als separaten Container auszuführen. Hierzu empfiehlt sich z.B. das Image [browserless/chrome](https://hub.docker.com/r/browserless/chrome/). Dieses Image kann z.B. mit dem Befehl
+### Externer Chrome Browser
+Kann der mitgelieferte Browser kann aufgrund fehlender Abhängigkeiten nicht genutzt werden, so empfiehlt es sich den Chromium Browser als separaten Container auszuführen. Hierzu empfiehlt sich z.B. das Image [browserless/chrome](https://hub.docker.com/r/browserless/chrome/). Dieses Image kann z.B. mit dem Befehl
 
 ```
 docker run -p 3000:3000 browserless/chrome
@@ -53,16 +53,16 @@ The adapter runs as a "scheduled" adapter and pulls the data in the specified in
 The adapter uses a headless version of the Chromium browser to parse the data from the customer portal. Either the Chromium version supplied by the adapter can be used for this, or an external one. 
 
 ### Supplied version of Chrome
-If the supplied one is to be used, then the dependencies of Chromium must be fulfilled on the host system of ioBroker. If any of these dependencies are missing, the adapter will throw an error in the log, indicating the missing library. These can be installed on a Debian/Ubuntu system for example with:
+If the supplied Chromium browser is to be used, the dependencies must be fulfilled on the host system of ioBroker. On installation, the adapter will try and install any missing dependencies. Should this not work and any of the dependencies are missing, the adapter will throw an error in the log, indicating the missing library. These can be installed on a Debian/Ubuntu system for example with:
 
 ```
 sudo apt install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2. 0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 ```
 
-If ioBroker is installed on a different operating system, the package names of the dependencies may be different - a quick Google search will probably help. These must then be installed for the respective operating system. Alternatively, you can switch to using an external browser (see chapter: Using with Docker).
+If ioBroker is installed on a different operating system, the package names of the dependencies may be different - a quick Google search will probably help. These must then be installed for the respective operating system. Alternatively, you can switch to using an external browser.
 
-### Use with Docker
-If ioBroker is running in a Docker container and the supplied browser cannot be used due to missing dependencies, it is recommended to run the Chromium browser as a separate container. For this purpose, the image [browserless/chrome](https://hub.docker.com/r/browserless/chrome/) is recommended, for example. This image can be executed e.g. with the command
+### External Chrome Browser
+If the supplied browser cannot be used due to missing dependencies, it is recommended to run the Chromium browser as a separate container. For this purpose, the image [browserless/chrome](https://hub.docker.com/r/browserless/chrome/) is recommended. This image can be executed with the command
 
 ```
 docker run -p 3000:3000 browserless/chrome
@@ -71,6 +71,7 @@ and is then accessible at `http://[IP-of-docker-host]:3000`. If the web interfac
 
 
 ## Changelog
+
 ### 1.0.3 (2022-04-16)
 * Improved handling of errors (Adapter does no longer pull data when server is offline, leading to empty/null states)
 

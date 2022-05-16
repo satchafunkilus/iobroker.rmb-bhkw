@@ -2,6 +2,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const puppeteer = require('puppeteer');
+const sleep = require('util').promisify(setTimeout);
 
 class RmbBhkw extends utils.Adapter {
 
@@ -26,6 +27,7 @@ class RmbBhkw extends utils.Adapter {
 		const re = /^.*:\/\//;
 		const browserPath = 'ws://' + this.config.browserPath.replace(re, '');
 		const externalBrowser = this.config.externalBrowser;
+		const delay = Math.floor(Math.random() * 1000 *60);
 		let browser;
 		const results = [];
 		await this.setObjectNotExistsAsync('_DataAge', {
@@ -41,6 +43,11 @@ class RmbBhkw extends utils.Adapter {
 			},
 			native: {},
 		});
+
+		this.log.info('Warte für ' + delay/1000 + ' Sekunden.');
+		//await new Promise(() => setTimeout(() => this.log.info('Starte mit Verzögerung'), delay));
+		await sleep(delay);
+		this.log.info('Starte mit Verzögerung');
 
 		try {
 
