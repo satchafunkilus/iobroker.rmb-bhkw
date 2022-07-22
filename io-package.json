@@ -3,6 +3,9 @@
         "name": "rmb-bhkw",
         "version": "1.0.4",
         "news": {
+            "1.0.4": {
+                "en": "Fixed dependency handling."
+            },
             "1.0.3": {
                 "en": "Improved error handling",
                 "de": "Verbesserte Fehlerbehandlung",
