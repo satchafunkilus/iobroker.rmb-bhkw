@@ -1,0 +1,33 @@
+{
+"i18n": true,
+"type": "panel",
+"label": "Options",
+"items": {
+    "bhkwID": {
+        "type": "number",
+        "sm": 12,
+        "md": 3,
+        "lg": 2,
+        "label": "NeoTower ID",
+        "help": "ID of your NeoTower for login to the portal"
+    },
+    "externalBrowser": {
+        "type": "checkbox",
+        "sm": 4,
+        "md": 3,
+        "lg": 4,
+        "label": "External browser",
+        "help": "Use external browser, instead of the bundled one (of having issues with Docker)"
+    },
+    "browserPath": {
+        "type": "text",
+        "sm": 12,
+        "md": 6,
+        "lg": 4,
+        "label": "Path to Browser",
+        "help": "URL or path to external Chrome Browser",
+        "hidden": "data.externalBrowser === false"
+    }
+
+}
+}

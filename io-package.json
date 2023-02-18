@@ -56,7 +56,6 @@
                 "uk": "початковий випуск"
             }
         },
-        "title": "RMB BHKW Überwachung",
         "titleLang": {
             "en": "RMB BHKW Überwachung",
             "de": "RMB BHKW Überwachung",
@@ -87,9 +86,9 @@
             "satchafunkilus"
         ],
         "keywords": [
-            "ioBroker",
-            "template",
-            "Smart Home",
+            "bhkw",
+            "rmb",
+            "remeha",
             "home automation"
         ],
         "license": "MIT",
@@ -107,6 +106,9 @@
         "connectionType": "cloud",
         "dataSource": "poll",
         "materialize": true,
+        "adminUI": {
+            "config": "json"
+        },
         "osDependencies": {
             "linux": [
                 "ca-certificates",
@@ -151,6 +153,11 @@
         "dependencies": [
             {
                 "js-controller": ">=2.0.0"
+            }
+        ],
+        "globalDependencies": [
+            {
+                "admin": ">=5.1.28"
             }
         ]
     },

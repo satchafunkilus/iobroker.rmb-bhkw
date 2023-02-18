@@ -36,7 +36,7 @@ class RmbBhkw extends utils.Adapter {
 			type: 'state',
 			common: {
 				name: '_DataAge',
-				type: 'state',
+				type: 'number',
 				role: 'state',
 				// @ts-ignore
 				read: true,

@@ -1,5 +1,10 @@
 {
-    "rmb-bhkw adapter settings": "rmb-bhkw 的适配器设置",
-    "BHKW ID": "新塔标识",
-    "Browserpfad": "浏览器路径"
+    "rmb-bhkw adapter settings": "rmb-bhkw 适配器设置",
+    "NeoTower ID": "NeoTower ID",
+    "BHKW ID": "NeoTower ID",
+    "Path to Browser": "浏览器路径",
+    "ID of your NeoTower for login to the portal": "用于登录门户的 NeoTower ID",
+    "URL or path to external Chrome Browser": "外部 Chrome 浏览器的 URL 或路径",
+    "Use external browser, instead of the bundled one (of having issues with Docker)": "使用外部浏览器，而不是捆绑的浏览器（Docker 有问题）",
+    "External browser": "外部浏览器"
 }

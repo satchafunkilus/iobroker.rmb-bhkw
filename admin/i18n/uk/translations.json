@@ -1,5 +1,10 @@
 {
-    "rmb-bhkw adapter settings": "Налаштування адаптера для rmb-bhkw",
+    "rmb-bhkw adapter settings": "налаштування адаптера rmb-bhkw",
+    "NeoTower ID": "NeoTower ID",
     "BHKW ID": "NeoTower ID",
-    "Browserpfad": "Шлях до браузера"
+    "Path to Browser": "Шлях до браузера",
+    "ID of your NeoTower for login to the portal": "ID вашого NeoTower для входу на портал",
+    "URL or path to external Chrome Browser": "URL-адреса або шлях до зовнішнього веб-переглядача Chrome",
+    "Use external browser, instead of the bundled one (of having issues with Docker)": "Використовуйте зовнішній браузер замість стандартного (через проблеми з Docker)",
+    "External browser": "Зовнішній браузер"
 }
