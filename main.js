@@ -51,7 +51,7 @@ class RmbBhkw extends utils.Adapter {
 		await sleep(delay);
 		if (stopped) {
 			// @ts-ignore
-			this.stop();
+			return;
 		}
 		else {
 			this.log.info('Starte mit Verzögerung');

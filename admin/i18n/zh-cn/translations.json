@@ -6,5 +6,8 @@
     "ID of your NeoTower for login to the portal": "用于登录门户的 NeoTower ID",
     "URL or path to external Chrome Browser": "外部 Chrome 浏览器的 URL 或路径",
     "Use external browser, instead of the bundled one (of having issues with Docker)": "使用外部浏览器，而不是捆绑的浏览器（Docker 有问题）",
-    "External browser": "外部浏览器"
+    "External browser": "外部浏览器",
+    "Use external browser, instead of the bundled one (if having issues with Docker)": "使用外部浏览器，而不是捆绑的浏览器（如果 Docker 有问题）",
+    "RMB cogeneration unit Monitoring": "人民币热电联产机组监测",
+    "Reads data from RMB cogeneration units (e.g. Remeha eLina) via the RMBenergie customer portal": "通过 RMBenergie 客户门户从 RMB 热电联产机组（例如 Remeha eLina）读取数据"
 }

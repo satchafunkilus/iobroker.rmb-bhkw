@@ -6,5 +6,8 @@
     "ID of your NeoTower for login to the portal": "Identyfikator Twojej NeoTower do logowania do portalu",
     "URL or path to external Chrome Browser": "Adres URL lub ścieżka do zewnętrznej przeglądarki Chrome",
     "Use external browser, instead of the bundled one (of having issues with Docker)": "Użyj zewnętrznej przeglądarki zamiast dołączonej (jeśli masz problemy z Dockerem)",
-    "External browser": "Przeglądarka zewnętrzna"
+    "External browser": "Przeglądarka zewnętrzna",
+    "Use external browser, instead of the bundled one (if having issues with Docker)": "Użyj zewnętrznej przeglądarki zamiast dołączonej (jeśli masz problemy z Dockerem)",
+    "RMB cogeneration unit Monitoring": "Monitoring jednostek kogeneracyjnych RMB",
+    "Reads data from RMB cogeneration units (e.g. Remeha eLina) via the RMBenergie customer portal": "Odczytuje dane z jednostek kogeneracyjnych RMB (np. Remeha eLina) za pośrednictwem portalu klienta RMBenergie"
 }

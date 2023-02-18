@@ -57,30 +57,30 @@
             }
         },
         "titleLang": {
-            "en": "RMB BHKW Überwachung",
-            "de": "RMB BHKW Überwachung",
-            "ru": "RMB BHKW Überwachung",
-            "pt": "RMB BHKW Überwachung",
-            "nl": "RMB BHKW berwachung",
-            "fr": "RMB BHKW Überwachung",
-            "it": "RMB BHKW Überwachung",
-            "es": "RMB BHKW Überwachung",
-            "pl": "RMB BHKW Überwachung",
-            "zh-cn": "人民币 BHKW Überwachung",
-            "uk": "RMB BHKW Überwachung"
+            "en": "RMB cogeneration unit monitoring",
+            "de": "RMB-BHKW-Überwachung",
+            "ru": "Мониторинг когенерационной установки RMB",
+            "pt": "Monitoramento da unidade de cogeração RMB",
+            "nl": "Bewaking van RMB warmtekrachtkoppelingseenheid",
+            "fr": "Surveillance de l'unité de cogénération RMB",
+            "it": "Monitoraggio unità di cogenerazione RMB",
+            "es": "Supervisión de la unidad de cogeneración RMB",
+            "pl": "Monitoring jednostek kogeneracyjnych RMB",
+            "uk": "Моніторинг когенераційної установки RMB",
+            "zh-cn": "人民币热电联产机组监测"
         },
         "desc": {
-            "en": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "de": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "ru": "Список дат RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "pt": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "nl": "Liest Daten von RMB BHKWs (vb. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "fr": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "it": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "es": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "pl": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "zh-cn": "Liest Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "uk": "Ліст Daten von RMB BHKWs (z.b. Remeha eLina) über das RMBenergie Kundenportal aus"
+            "en": "Reads data from RMB cogeneration units (e.g. Remeha eLina) via the RMBenergie customer portal",
+            "de": "Liest Daten von RMB Blockheizkraftwerken (z.B. Remeha eLina) über das RMBenergie Kundenportal aus",
+            "ru": "Считывает данные с когенерационных установок RMB (например, Remeha eLina) через клиентский портал RMBenergie.",
+            "pt": "Lê dados de unidades de cogeração RMB (por exemplo, Remeha eLina) através do portal do cliente RMBenergie",
+            "nl": "Leest gegevens uit van RMB WKK-installaties (bijv. Remeha eLina) via het RMBenergie klantenportaal",
+            "fr": "Lit les données des unités de cogénération RMB (par exemple Remeha eLina) via le portail client RMBenergie",
+            "it": "Legge i dati dalle unità di cogenerazione RMB (ad es. Remeha eLina) tramite il portale clienti RMBenergie",
+            "es": "Lee datos de unidades de cogeneración de RMB (por ejemplo, Remeha eLina) a través del portal de clientes de RMBenergie",
+            "pl": "Odczytuje dane z jednostek kogeneracyjnych RMB (np. Remeha eLina) za pośrednictwem portalu klienta RMBenergie",
+            "uk": "Зчитує дані з когенераційних установок RMB (наприклад, Remeha eLina) через портал клієнтів RMBenergie",
+            "zh-cn": "通过 RMBenergie 客户门户从 RMB 热电联产机组（例如 Remeha eLina）读取数据"
         },
         "authors": [
             "satchafunkilus"
@@ -89,6 +89,7 @@
             "bhkw",
             "rmb",
             "remeha",
+            "cogeneration",
             "home automation"
         ],
         "license": "MIT",
