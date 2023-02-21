@@ -1,8 +1,21 @@
 {
     "common": {
         "name": "rmb-bhkw",
-        "version": "1.0.4",
+        "version": "1.0.5",
         "news": {
+            "1.0.5": {
+                "en": "Updated dependencies.",
+                "de": "Aktualisierte Abhängigkeiten.",
+                "ru": "Обновлены зависимости.",
+                "pt": "Dependências atualizadas.",
+                "nl": "Bijgewerkte afhankelijkheden.",
+                "fr": "Dépendances mises à jour.",
+                "it": "Dipendenze aggiornate.",
+                "es": "Dependencias actualizadas.",
+                "pl": "Zaktualizowano zależności.",
+                "uk": "Оновлені залежності.",
+                "zh-cn": "更新了依赖项。"
+            },
             "1.0.4": {
                 "en": "Fixed dependency handling.",
                 "de": "Behandlung von Abhängigkeiten behoben.",
