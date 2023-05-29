@@ -19,6 +19,14 @@
         "label": "External browser",
         "help": "Use external browser, instead of the bundled one (of having issues with Docker)"
     },
+    "allowInsecure": {
+        "type": "checkbox",
+        "sm": 4,
+        "md": 3,
+        "lg": 4,
+        "label": "Allow Insecure HTTS connections",
+        "help": "Allows to connect, in case RMBEnergie certificate is expired"
+    },
     "browserPath": {
         "type": "text",
         "sm": 12,

@@ -186,7 +186,8 @@
     "native": {
         "bhkwID": 9999,
         "browserPath": "ws://localhost:3000",
-        "externalBrowser": false
+        "externalBrowser": false,
+        "allowInsecure": false
     },
     "objects": [],
     "instanceObjects": []

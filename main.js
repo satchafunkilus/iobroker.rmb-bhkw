@@ -29,6 +29,7 @@ class RmbBhkw extends utils.Adapter {
 		const re = /^.*:\/\//;
 		const browserPath = 'ws://' + this.config.browserPath.replace(re, '');
 		const externalBrowser = this.config.externalBrowser;
+		const allowInsecure = this.config.allowInsecure;
 		const delay = Math.floor(Math.random() * 1000 *60);
 		let browser;
 		const results = [];
@@ -67,13 +68,23 @@ class RmbBhkw extends utils.Adapter {
 				if (externalBrowser) {
 					this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
 					try {
-						browser = await puppeteer.connect({ browserWSEndpoint: browserPath });
+						if (allowInsecure) {
+							browser = await puppeteer.connect({ browserWSEndpoint: browserPath, ignoreHTTPSErrors: true});
+						}
+						else {
+							browser = await puppeteer.connect({ browserWSEndpoint: browserPath});
+						}
 					} catch (error) {
 						throw new Error('Konnte keine Verbindung zum externen Browser herstellen. Ist die URL korrekt?');
 					}
 				} else {
 					this.log.info('Verwende den integrierten Browser');
-					browser = await puppeteer.launch();
+					if (allowInsecure) {
+						browser = await puppeteer.launch({ignoreHTTPSErrors: true, args: ['--proxy-bypass-list=*', '--disable-gpu', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--no-first-run', '--no-sandbox', '--no-zygote', '--single-process', '--ignore-certificate-errors', '--ignore-certificate-errors-spki-list', '--enable-features=NetworkService']});
+					}
+					else {
+						browser = await puppeteer.launch();
+					}
 				}
 
 
