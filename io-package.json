@@ -1,194 +1,207 @@
 {
-    "common": {
-        "name": "rmb-bhkw",
-        "version": "1.0.5",
-        "news": {
-            "1.0.5": {
-                "en": "Updated dependencies.",
-                "de": "Aktualisierte Abhängigkeiten.",
-                "ru": "Обновлены зависимости.",
-                "pt": "Dependências atualizadas.",
-                "nl": "Bijgewerkte afhankelijkheden.",
-                "fr": "Dépendances mises à jour.",
-                "it": "Dipendenze aggiornate.",
-                "es": "Dependencias actualizadas.",
-                "pl": "Zaktualizowano zależności.",
-                "uk": "Оновлені залежності.",
-                "zh-cn": "更新了依赖项。"
-            },
-            "1.0.4": {
-                "en": "Fixed dependency handling.",
-                "de": "Behandlung von Abhängigkeiten behoben.",
-                "ru": "Исправлена ​​обработка зависимостей.",
-                "pt": "Manipulação de dependência fixa.",
-                "nl": "Vaste afhandeling van afhankelijkheid.",
-                "fr": "Correction de la gestion des dépendances.",
-                "it": "Corretta la gestione delle dipendenze.",
-                "es": "Manejo de dependencias fijas.",
-                "pl": "Naprawiono obsługę zależności.",
-                "uk": "Виправлена ​​обробка залежностей.",
-                "zh-cn": "固定依赖处理。"
-            },
-            "1.0.3": {
-                "en": "Improved error handling",
-                "de": "Verbesserte Fehlerbehandlung",
-                "ru": "Улучшенная обработка ошибок",
-                "pt": "Tratamento de erros aprimorado",
-                "nl": "Verbeterde foutafhandeling",
-                "fr": "Amélioration de la gestion des erreurs",
-                "it": "Gestione degli errori migliorata",
-                "es": "Manejo de errores mejorado",
-                "pl": "Ulepszona obsługa błędów",
-                "zh-cn": "改进的错误处理",
-                "uk": "Покращена обробка помилок"
-            },
-            "1.0.2": {
-                "en": "First functional release",
-                "de": "Erste funktionale Version",
-                "ru": "Первый функциональный релиз",
-                "pt": "Primeira versão funcional",
-                "nl": "Eerste functionele release",
-                "fr": "Première version fonctionnelle",
-                "it": "Primo rilascio funzionale",
-                "es": "Primera versión funcional",
-                "pl": "Pierwsze wydanie funkcjonalne",
-                "zh-cn": "第一个功能发布",
-                "uk": "Перший функціональний випуск"
-            },
-            "0.0.1": {
-                "en": "initial release",
-                "de": "Erstveröffentlichung",
-                "ru": "Начальная версия",
-                "pt": "lançamento inicial",
-                "nl": "Eerste uitgave",
-                "fr": "Première version",
-                "it": "Versione iniziale",
-                "es": "Versión inicial",
-                "pl": "Pierwsze wydanie",
-                "zh-cn": "首次出版",
-                "uk": "початковий випуск"
-            }
-        },
-        "titleLang": {
-            "en": "RMB cogeneration unit monitoring",
-            "de": "RMB-BHKW-Überwachung",
-            "ru": "Мониторинг когенерационной установки RMB",
-            "pt": "Monitoramento da unidade de cogeração RMB",
-            "nl": "Bewaking van RMB warmtekrachtkoppelingseenheid",
-            "fr": "Surveillance de l'unité de cogénération RMB",
-            "it": "Monitoraggio unità di cogenerazione RMB",
-            "es": "Supervisión de la unidad de cogeneración RMB",
-            "pl": "Monitoring jednostek kogeneracyjnych RMB",
-            "uk": "Моніторинг когенераційної установки RMB",
-            "zh-cn": "人民币热电联产机组监测"
-        },
-        "desc": {
-            "en": "Reads data from RMB cogeneration units (e.g. Remeha eLina) via the RMBenergie customer portal",
-            "de": "Liest Daten von RMB Blockheizkraftwerken (z.B. Remeha eLina) über das RMBenergie Kundenportal aus",
-            "ru": "Считывает данные с когенерационных установок RMB (например, Remeha eLina) через клиентский портал RMBenergie.",
-            "pt": "Lê dados de unidades de cogeração RMB (por exemplo, Remeha eLina) através do portal do cliente RMBenergie",
-            "nl": "Leest gegevens uit van RMB WKK-installaties (bijv. Remeha eLina) via het RMBenergie klantenportaal",
-            "fr": "Lit les données des unités de cogénération RMB (par exemple Remeha eLina) via le portail client RMBenergie",
-            "it": "Legge i dati dalle unità di cogenerazione RMB (ad es. Remeha eLina) tramite il portale clienti RMBenergie",
-            "es": "Lee datos de unidades de cogeneración de RMB (por ejemplo, Remeha eLina) a través del portal de clientes de RMBenergie",
-            "pl": "Odczytuje dane z jednostek kogeneracyjnych RMB (np. Remeha eLina) za pośrednictwem portalu klienta RMBenergie",
-            "uk": "Зчитує дані з когенераційних установок RMB (наприклад, Remeha eLina) через портал клієнтів RMBenergie",
-            "zh-cn": "通过 RMBenergie 客户门户从 RMB 热电联产机组（例如 Remeha eLina）读取数据"
-        },
-        "authors": [
-            "satchafunkilus"
-        ],
-        "docs": {
-            "en": [
-                "docs/en/README.md"
-            ],
-            "de": [
-                "docs/de/README.md"
-            ]
-        },
-        "keywords": [
-            "bhkw",
-            "rmb",
-            "remeha",
-            "cogeneration",
-            "home automation"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "main": "main.js",
-        "icon": "rmb-bhkw.png",
-        "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/satchafunkilus/ioBroker.rmb-bhkw/master/admin/rmb-bhkw.png",
-        "readme": "https://github.com/satchafunkilus/ioBroker.rmb-bhkw/blob/master/README.md",
-        "loglevel": "info",
-        "mode": "schedule",
-        "schedule": "*/5 * * * *",
-        "type": "energy",
-        "compact": true,
-        "connectionType": "cloud",
-        "dataSource": "poll",
-        "materialize": true,
-        "adminUI": {
-            "config": "json"
-        },
-        "osDependencies": {
-            "linux": [
-                "ca-certificates",
-                "fonts-liberation",
-                "libappindicator3-1",
-                "libasound2",
-                "libatk-bridge2.0-0",
-                "libatk1.0-0",
-                "libc6",
-                "libcairo2",
-                "libcups2",
-                "libdbus-1-3",
-                "libexpat1",
-                "libfontconfig1",
-                "libgbm1",
-                "libgcc1",
-                "libglib2.0-0",
-                "libgtk-3-0",
-                "libnspr4",
-                "libnss3",
-                "libpango-1.0-0",
-                "libpangocairo-1.0-0",
-                "libstdc++6",
-                "libx11-6",
-                "libx11-xcb1",
-                "libxcb1",
-                "libxcomposite1",
-                "libxcursor1",
-                "libxdamage1",
-                "libxext6",
-                "libxfixes3",
-                "libxi6",
-                "libxrandr2",
-                "libxrender1",
-                "libxss1",
-                "libxtst6",
-                "lsb-release",
-                "wget",
-                "xdg-utils"
-            ]
-        },
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ],
-        "globalDependencies": [
-            {
-                "admin": ">=5.1.28"
-            }
-        ]
+  "common": {
+    "name": "rmb-bhkw",
+    "version": "1.0.6",
+    "news": {
+      "1.0.6": {
+        "en": "Added option to allow insecure certificates, as rmbenegie portal is not updating their certificates in time, leading to data not being able to be pulled",
+        "de": "Option hinzugefügt, um unsichere Zertifikate zu ermöglichen, da rmbenegie Portal ihre Zertifikate nicht rechtzeitig aktualisiert, was zu Daten führt nicht gezogen werden können",
+        "ru": "Добавлена возможность допускать небезопасные сертификаты, так как портал rmbenegie не обновляет свои сертификаты во времени, ведущие к данным, не способным вытащить",
+        "pt": "Opção adicionada para permitir certificados inseguros, como portal rmbenegie não está atualizando seus certificados no tempo, levando a dados que não podem ser puxados",
+        "nl": "Toegevoegd optie om onzekere certificaten toe te staan, want Rmbenegie portal verhoogt hun certificaten niet in de tijd, leidend naar gegevens die niet kunnen worden getrokken",
+        "fr": "Ajout de l'option pour permettre des certificats insécurisés, puisque le portail rmbenegie ne met pas à jour leurs certificats dans le temps, ce qui conduit à ne pas être en mesure de tirer des données",
+        "it": "Aggiunta opzione per consentire certificati insicuri, in quanto portale rmbenegie non aggiorna i loro certificati nel tempo, portando a dati non in grado di essere tirato",
+        "es": "Opción agregada para permitir certificados inseguros, ya que el portal rmbenegie no está actualizando sus certificados a tiempo, lo que conduce a datos que no pueden ser retirados",
+        "pl": "Dodana opcja, aby umożliwić niebezpieczne świadectwa, ponieważ portal rmbenegie nie jest w tym czasie uporządkowany, co prowadzi do danych, które nie są w stanie ciągnąć",
+        "uk": "Додана можливість отримання сертифікатів, як портал mbenegie не оновлюється їх сертифікати в часі, що веде до даних, які не можуть бути вилучені",
+        "zh-cn": "添加允许无担保证书的选择办法,因为复合黑暗门户不及时更新其证书,导致无法收回的数据。"
+      },
+      "1.0.5": {
+        "en": "Updated dependencies.",
+        "de": "Aktualisierte Abhängigkeiten.",
+        "ru": "Обновлены зависимости.",
+        "pt": "Dependências atualizadas.",
+        "nl": "Bijgewerkte afhankelijkheden.",
+        "fr": "Dépendances mises à jour.",
+        "it": "Dipendenze aggiornate.",
+        "es": "Dependencias actualizadas.",
+        "pl": "Zaktualizowano zależności.",
+        "uk": "Оновлені залежності.",
+        "zh-cn": "更新了依赖项。"
+      },
+      "1.0.4": {
+        "en": "Fixed dependency handling.",
+        "de": "Behandlung von Abhängigkeiten behoben.",
+        "ru": "Исправлена ​​обработка зависимостей.",
+        "pt": "Manipulação de dependência fixa.",
+        "nl": "Vaste afhandeling van afhankelijkheid.",
+        "fr": "Correction de la gestion des dépendances.",
+        "it": "Corretta la gestione delle dipendenze.",
+        "es": "Manejo de dependencias fijas.",
+        "pl": "Naprawiono obsługę zależności.",
+        "uk": "Виправлена ​​обробка залежностей.",
+        "zh-cn": "固定依赖处理。"
+      },
+      "1.0.3": {
+        "en": "Improved error handling",
+        "de": "Verbesserte Fehlerbehandlung",
+        "ru": "Улучшенная обработка ошибок",
+        "pt": "Tratamento de erros aprimorado",
+        "nl": "Verbeterde foutafhandeling",
+        "fr": "Amélioration de la gestion des erreurs",
+        "it": "Gestione degli errori migliorata",
+        "es": "Manejo de errores mejorado",
+        "pl": "Ulepszona obsługa błędów",
+        "zh-cn": "改进的错误处理",
+        "uk": "Покращена обробка помилок"
+      },
+      "1.0.2": {
+        "en": "First functional release",
+        "de": "Erste funktionale Version",
+        "ru": "Первый функциональный релиз",
+        "pt": "Primeira versão funcional",
+        "nl": "Eerste functionele release",
+        "fr": "Première version fonctionnelle",
+        "it": "Primo rilascio funzionale",
+        "es": "Primera versión funcional",
+        "pl": "Pierwsze wydanie funkcjonalne",
+        "zh-cn": "第一个功能发布",
+        "uk": "Перший функціональний випуск"
+      },
+      "0.0.1": {
+        "en": "initial release",
+        "de": "Erstveröffentlichung",
+        "ru": "Начальная версия",
+        "pt": "lançamento inicial",
+        "nl": "Eerste uitgave",
+        "fr": "Première version",
+        "it": "Versione iniziale",
+        "es": "Versión inicial",
+        "pl": "Pierwsze wydanie",
+        "zh-cn": "首次出版",
+        "uk": "початковий випуск"
+      }
     },
-    "native": {
-        "bhkwID": 9999,
-        "browserPath": "ws://localhost:3000",
-        "externalBrowser": false,
-        "allowInsecure": false
+    "titleLang": {
+      "en": "RMB cogeneration unit monitoring",
+      "de": "RMB-BHKW-Überwachung",
+      "ru": "Мониторинг когенерационной установки RMB",
+      "pt": "Monitoramento da unidade de cogeração RMB",
+      "nl": "Bewaking van RMB warmtekrachtkoppelingseenheid",
+      "fr": "Surveillance de l'unité de cogénération RMB",
+      "it": "Monitoraggio unità di cogenerazione RMB",
+      "es": "Supervisión de la unidad de cogeneración RMB",
+      "pl": "Monitoring jednostek kogeneracyjnych RMB",
+      "uk": "Моніторинг когенераційної установки RMB",
+      "zh-cn": "人民币热电联产机组监测"
     },
-    "objects": [],
-    "instanceObjects": []
+    "desc": {
+      "en": "Reads data from RMB cogeneration units (e.g. Remeha eLina) via the RMBenergie customer portal",
+      "de": "Liest Daten von RMB Blockheizkraftwerken (z.B. Remeha eLina) über das RMBenergie Kundenportal aus",
+      "ru": "Считывает данные с когенерационных установок RMB (например, Remeha eLina) через клиентский портал RMBenergie.",
+      "pt": "Lê dados de unidades de cogeração RMB (por exemplo, Remeha eLina) através do portal do cliente RMBenergie",
+      "nl": "Leest gegevens uit van RMB WKK-installaties (bijv. Remeha eLina) via het RMBenergie klantenportaal",
+      "fr": "Lit les données des unités de cogénération RMB (par exemple Remeha eLina) via le portail client RMBenergie",
+      "it": "Legge i dati dalle unità di cogenerazione RMB (ad es. Remeha eLina) tramite il portale clienti RMBenergie",
+      "es": "Lee datos de unidades de cogeneración de RMB (por ejemplo, Remeha eLina) a través del portal de clientes de RMBenergie",
+      "pl": "Odczytuje dane z jednostek kogeneracyjnych RMB (np. Remeha eLina) za pośrednictwem portalu klienta RMBenergie",
+      "uk": "Зчитує дані з когенераційних установок RMB (наприклад, Remeha eLina) через портал клієнтів RMBenergie",
+      "zh-cn": "通过 RMBenergie 客户门户从 RMB 热电联产机组（例如 Remeha eLina）读取数据"
+    },
+    "authors": [
+      "satchafunkilus"
+    ],
+    "docs": {
+      "en": [
+        "docs/en/README.md"
+      ],
+      "de": [
+        "docs/de/README.md"
+      ]
+    },
+    "keywords": [
+      "bhkw",
+      "rmb",
+      "remeha",
+      "cogeneration",
+      "home automation"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "main": "main.js",
+    "icon": "rmb-bhkw.png",
+    "enabled": true,
+    "extIcon": "https://raw.githubusercontent.com/satchafunkilus/ioBroker.rmb-bhkw/master/admin/rmb-bhkw.png",
+    "readme": "https://github.com/satchafunkilus/ioBroker.rmb-bhkw/blob/master/README.md",
+    "loglevel": "info",
+    "mode": "schedule",
+    "schedule": "*/5 * * * *",
+    "type": "energy",
+    "compact": true,
+    "connectionType": "cloud",
+    "dataSource": "poll",
+    "materialize": true,
+    "adminUI": {
+      "config": "json"
+    },
+    "osDependencies": {
+      "linux": [
+        "ca-certificates",
+        "fonts-liberation",
+        "libappindicator3-1",
+        "libasound2",
+        "libatk-bridge2.0-0",
+        "libatk1.0-0",
+        "libc6",
+        "libcairo2",
+        "libcups2",
+        "libdbus-1-3",
+        "libexpat1",
+        "libfontconfig1",
+        "libgbm1",
+        "libgcc1",
+        "libglib2.0-0",
+        "libgtk-3-0",
+        "libnspr4",
+        "libnss3",
+        "libpango-1.0-0",
+        "libpangocairo-1.0-0",
+        "libstdc++6",
+        "libx11-6",
+        "libx11-xcb1",
+        "libxcb1",
+        "libxcomposite1",
+        "libxcursor1",
+        "libxdamage1",
+        "libxext6",
+        "libxfixes3",
+        "libxi6",
+        "libxrandr2",
+        "libxrender1",
+        "libxss1",
+        "libxtst6",
+        "lsb-release",
+        "wget",
+        "xdg-utils"
+      ]
+    },
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
+    ],
+    "globalDependencies": [
+      {
+        "admin": ">=5.1.28"
+      }
+    ]
+  },
+  "native": {
+    "bhkwID": 9999,
+    "browserPath": "ws://localhost:3000",
+    "externalBrowser": false,
+    "allowInsecure": false
+  },
+  "objects": [],
+  "instanceObjects": []
 }

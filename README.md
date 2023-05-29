@@ -37,9 +37,9 @@ and is then accessible at `http://[IP-of-docker-host]:3000`. If the web interfac
 
 
 ## Changelog
-
-### **WORK IN PROGRESS**
+### 1.0.6 (2023-05-29)
 * Added option to allow insecure certificates, as rmbenegie portal is not updating their certificates in time, leading to data not being able to be pulled
+
 ### 1.0.5 (2023-02-18)
 * Added Admin5 UI
 * Updated dependencies
