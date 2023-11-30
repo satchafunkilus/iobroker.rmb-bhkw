@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rmb-bhkw",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "news": {
+      "1.0.7": {
+        "en": "BREAKING CHANGE due to renaming of object ids\nChanged object IDs to English\nPrevented forbidden chars in object IDs\nChanged objects to read-only\nChanged logs to english\nChanged some logs from info to debug",
+        "de": "BREAKING CHANGE durch Umbenennung von Objektiden\nGeänderte Objekt-IDs auf Englisch\nVerhinderte verbotene Wagen in Objekt-IDs\nGeänderte Objekte nur lesen\nÄnderte Protokolle auf Englisch\nEinige Protokolle von Info zu Debug geändert",
+        "ru": "ИЗМЕНЕНИЕ ЗАВТРА в связи с ремонтом объектов\nИзмененный ID объекта на английский\nПредотвращение запрещенных зарядов в ID объекта\nИзмененные объекты для чтения\nИзмененные журналы на английский\nИзменили некоторые журналы от информации до отладки",
+        "pt": "BREAKING CHANGE devido à renomeação de objetos\nIDs de objetos alterados para inglês\nEvitado caridades proibidas em IDs de objeto\nObjetos alterados para somente leitura\nRegistos alterados para inglês\nAlterou alguns registros de informações para depuração",
+        "nl": "BREAKING CHANGE door het hernamen van objecten\nVeranderde object ID's naar Engels\nVerboden verbiedingen in objecten ID\nVeranderde objecten om te lezen\nVeranderde logboeken naar Engels\nVerander wat logboeken van informatie om te debuggen",
+        "fr": "CHANGE BREAKING en raison de la revalorisation des ids objet\nID d'objet modifié en anglais\nChars interdits interdits dans les identifiants d'objet\nObjets modifiés pour lire seulement\nLes journaux modifiés en anglais\nChanged some logs from info to debug",
+        "it": "CAMBIAMENTO BREAKING dovuto il rinominazione di oggetti ids\nID oggetto modificato in inglese\nPrevenzione di caratteri vietati in ID oggetti\nOggetti cambiati in sola lettura\nTronchi cambiati in inglese\nModificato alcuni registri da info a debug",
+        "es": "CAMBIO DE CAMBIO debido a la renombre de los ids objeto\nID de objeto cambiado al inglés\nCarbillas prohibidas preventivas en identificaciones de objetos\nCambio de objetos para leer solo\nRegistros cambiados a inglés\nCambiar algunos registros de información a depuración",
+        "pl": "BREAKING CHANGE z powodu zmiany nazwy obiektów ids\nZmienił obiekty na angielskie\nZabronione chary w obiektach ID\nZmienione przedmioty do odczytu na sposób bezpośredni\nZmienił logi do poglądu\nZmienił niektóre logi z info do debugowania",
+        "uk": "ЗБЕРІГАННЯ ЗАХИСТУ З ОБМЕЖЕНОЮ ВІДПОВІДАЛЬНІСТЮ\nЗмінений ідентифікатор об'єкта англійською мовою\nЗапобігання заборонених вугілля в ідентифікаторах об'єкта\nЗмінені об'єкти для читання\nЗмінено журнали англійською мовою\nЗмінено деякі журнали з інформації про debug",
+        "zh-cn": "BAK 重新命名目标\n改用英文的物体\n防止被禁止的慈善事业\nB. 改正物体\n改装的逻辑\nB. 改变从Finfo到 debug的某种逻辑"
+      },
       "1.0.6": {
         "en": "Added option to allow insecure certificates, as rmbenegie portal is not updating their certificates in time, leading to data not being able to be pulled",
         "de": "Option hinzugefügt, um unsichere Zertifikate zu ermöglichen, da rmbenegie Portal ihre Zertifikate nicht rechtzeitig aktualisiert, was zu Daten führt nicht gezogen werden können",
