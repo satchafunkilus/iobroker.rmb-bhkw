@@ -18,7 +18,7 @@
     "url": "https://github.com/satchafunkilus/ioBroker.rmb-bhkw"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.0.3",
+    "@iobroker/adapter-core": "^3.0.4",
     "puppeteer": ">=21.4.1"
   },
   "devDependencies": {
