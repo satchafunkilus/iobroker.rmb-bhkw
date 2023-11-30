@@ -38,10 +38,13 @@ and is then accessible at `http://[IP-of-docker-host]:3000`. If the web interfac
 
 ## Changelog
 ### **WORK IN PROGRESS**
-* Changed logs to english
-* Changed some logs to debug only
+* BREAKING CHANGE due to renaming of object ids
+* Changed object IDs to English
 * Prevented forbidden chars in object IDs
 * Changed objects to read-only
+* Changed logs to english
+* Changed some logs from info to debug
+
 
 ### 1.0.6 (2023-05-29)
 * Added option to allow insecure certificates, as rmbenegie portal is not updating their certificates in time, leading to data not being able to be pulled

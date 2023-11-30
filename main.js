@@ -91,7 +91,7 @@ class RmbBhkw extends utils.Adapter {
 
 				// @ts-ignore
 				const page = await browser.newPage();
-				await page.goto('https://rmbenergie.de/rmbreport_br/messwerte.php?ident=' + bhkwID);
+				await page.goto('https://rmbenergie.de/rmbreport_br/en/messwerte.php?ident=' + bhkwID);
 				await page.waitForSelector('.auto-style3');
 				const data = await page.$$eval('.auto-style3, .auto-style4', (items) => {
 					console.log(items);
