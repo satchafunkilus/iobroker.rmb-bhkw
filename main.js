@@ -19,6 +19,7 @@ class RmbBhkw extends utils.Adapter {
 		this.on('ready', this.onReady.bind(this));
 		// this.on('objectChange', this.onObjectChange.bind(this));
 		// this.on('message', this.onMessage.bind(this));
+		// @ts-ignore
 		this.on('unload', this.onUnload.bind(this));
 	}
 
@@ -41,7 +42,7 @@ class RmbBhkw extends utils.Adapter {
 				role: 'state',
 				// @ts-ignore
 				read: true,
-				write: true,
+				write: false,
 				unit: 'min'
 			},
 			native: {},
@@ -60,11 +61,11 @@ class RmbBhkw extends utils.Adapter {
 			try {
 
 				if (bhkwID < 800 || bhkwID > 99999 || bhkwID == undefined) {
-					throw new Error('Invalid CHP ID. Stopping Adapter.');
+					throw new Error('Invalid NeoTower ID. Stopping Adapter.');
 				}
 
 
-				this.log.info('Reading data for CHP with ID: ' + bhkwID);
+				this.log.info('Reading data for NeoTower ID: ' + bhkwID);
 				if (externalBrowser) {
 					this.log.debug('Using external browser: ' + browserPath);
 					try {
@@ -127,7 +128,7 @@ class RmbBhkw extends utils.Adapter {
 				// @ts-ignore
 				const stateOfCharge = await page.$eval('div#ladungszahl', (e) => e.innerText.split(' ')[0]);
 				results.push({
-					name: 'Ladestand Warmwasserspeicher',
+					name: 'SoC',
 					value: stateOfCharge,
 					type: 'number',
 					unit: '%'
@@ -189,6 +190,7 @@ class RmbBhkw extends utils.Adapter {
 				});
 
 				this.log.info('Succesfully pulled data.');
+				// @ts-ignore
 				await this.createAndUpdateStates(results);
 
 				//Debug
@@ -211,32 +213,41 @@ class RmbBhkw extends utils.Adapter {
 	}
 
 
+	// @ts-ignore
 	async createAndUpdateStates(results){
 		try {
+			// @ts-ignore
 			this.log.debug('Updating states in ioBroker.');
-			for (const dataPoint of results) {
-				//Convert numbers to type number
+			// @ts-ignore
+			// eslint-disable-next-line prefer-const
+			for (let dataPoint of results) {
+				//Convert numbers and boolean values from text to correct data type
 				if (dataPoint.type === 'number') {dataPoint.value = parseFloat(dataPoint.value);}
 				if (dataPoint.value === 'AUF' || dataPoint.value == 'EIN') {dataPoint.value = true;}
 				if (dataPoint.value === 'ZU' || dataPoint.value == 'AUS') {dataPoint.value = false;}
 
+				dataPoint.id = dataPoint.name.replace(this.FORBIDDEN_CHARS, '_');
+				dataPoint.id = dataPoint.id.replace(/ /g, '_');
 
-				await this.setObjectNotExistsAsync(dataPoint.name, {
+				// @ts-ignore
+				await this.setObjectNotExistsAsync(dataPoint.id, {
 					type: 'state',
 					common: {
 						name: dataPoint.name,
 						type: dataPoint.type,
 						role: 'state',
 						read: true,
-						write: true,
+						write: false,
 						unit: dataPoint.unit
 					},
 					native: {},
 				});
-				await this.setStateAsync(dataPoint.name, {val: dataPoint.value, ack: true});
+				// @ts-ignore
+				await this.setStateAsync(dataPoint.id, {val: dataPoint.value, ack: true});
 			}
 
 		} catch (error) {
+			// @ts-ignore
 			this.log.error(`Error on saving data: ${error}`);
 		}
 	}
@@ -247,19 +258,24 @@ class RmbBhkw extends utils.Adapter {
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 * @param {() => void} callback
 	 */
+	// @ts-ignore
 	onUnload(callback) {
 		stopped = true;
 		try {
 			// Here you must clear all timeouts or intervals that may still be active
 			// clearTimeout(timeout1);
 			// clearInterval(interval1);
+			// @ts-ignore
 			this.log.debug('Cleaning up....');
 
+			// @ts-ignore
 			callback();
 		} catch (e) {
+			// @ts-ignore
 			callback();
 		}
 	}
+// @ts-ignore
 }
 
 if (require.main !== module) {
