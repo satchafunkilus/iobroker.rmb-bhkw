@@ -19,6 +19,7 @@ class RmbBhkw extends utils.Adapter {
 		this.on('ready', this.onReady.bind(this));
 		// this.on('objectChange', this.onObjectChange.bind(this));
 		// this.on('message', this.onMessage.bind(this));
+		// @ts-ignore
 		this.on('unload', this.onUnload.bind(this));
 	}
 
@@ -41,13 +42,13 @@ class RmbBhkw extends utils.Adapter {
 				role: 'state',
 				// @ts-ignore
 				read: true,
-				write: true,
+				write: false,
 				unit: 'min'
 			},
 			native: {},
 		});
 
-		this.log.info('Warte für ' + delay/1000 + ' Sekunden.');
+		this.log.info('Delaying for ' + delay/1000 + ' seconds.');
 		//await new Promise(() => setTimeout(() => this.log.info('Starte mit Verzögerung'), delay));
 		await sleep(delay);
 		if (stopped) {
@@ -55,18 +56,18 @@ class RmbBhkw extends utils.Adapter {
 			return;
 		}
 		else {
-			this.log.info('Starte mit Verzögerung');
+			this.log.info('Start with Delay');
 
 			try {
 
 				if (bhkwID < 800 || bhkwID > 99999 || bhkwID == undefined) {
-					throw new Error('Ungültige BHKW ID. Stoppe Adapter.');
+					throw new Error('Invalid NeoTower ID. Stopping Adapter.');
 				}
 
 
-				this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
+				this.log.info('Reading data for NeoTower ID: ' + bhkwID);
 				if (externalBrowser) {
-					this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
+					this.log.debug('Using external browser: ' + browserPath);
 					try {
 						if (allowInsecure) {
 							browser = await puppeteer.connect({ browserWSEndpoint: browserPath, ignoreHTTPSErrors: true});
@@ -75,10 +76,10 @@ class RmbBhkw extends utils.Adapter {
 							browser = await puppeteer.connect({ browserWSEndpoint: browserPath});
 						}
 					} catch (error) {
-						throw new Error('Konnte keine Verbindung zum externen Browser herstellen. Ist die URL korrekt?');
+						throw new Error('Could not establish connection to external browser. Is the URL correct?');
 					}
 				} else {
-					this.log.info('Verwende den integrierten Browser');
+					this.log.debug('Using the integrated browser');
 					if (allowInsecure) {
 						browser = await puppeteer.launch({ignoreHTTPSErrors: true, args: ['--proxy-bypass-list=*', '--disable-gpu', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--no-first-run', '--no-sandbox', '--no-zygote', '--single-process', '--ignore-certificate-errors', '--ignore-certificate-errors-spki-list', '--enable-features=NetworkService']});
 					}
@@ -127,7 +128,7 @@ class RmbBhkw extends utils.Adapter {
 				// @ts-ignore
 				const stateOfCharge = await page.$eval('div#ladungszahl', (e) => e.innerText.split(' ')[0]);
 				results.push({
-					name: 'Ladestand Warmwasserspeicher',
+					name: 'SoC',
 					value: stateOfCharge,
 					type: 'number',
 					unit: '%'
@@ -152,7 +153,7 @@ class RmbBhkw extends utils.Adapter {
 					const oldTimeString = await this.getStateAsync('_TimeLastRefresh');
 					//If objects do not exist (first time starting adapter), exit immediately
 					if(!oldDateString || !oldTimeString) {
-						throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+						throw new Error('Server is not providing any data. Service potentially offline.');
 					}
 					// @ts-ignore
 					const oldDateSplit = oldDateString.val.toString().split('.');
@@ -163,7 +164,7 @@ class RmbBhkw extends utils.Adapter {
 					const oldDataAge = Math.floor((now.valueOf() - oldTimeStamp.valueOf())/1000/60);
 
 					await this.setStateAsync('_DataAge', {val: oldDataAge, ack: true});
-					throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+					throw new Error('Server is not providing any data. Service potentially offline.');
 				}
 
 				//Calculate time passed since last data refresh
@@ -188,7 +189,8 @@ class RmbBhkw extends utils.Adapter {
 					unit: 'min'
 				});
 
-				this.log.info('Holen der Daten erfolgreich.');
+				this.log.info('Succesfully pulled data.');
+				// @ts-ignore
 				await this.createAndUpdateStates(results);
 
 				//Debug
@@ -200,7 +202,7 @@ class RmbBhkw extends utils.Adapter {
 				// this.log.info('Alter der Daten:' + dataAge);
 
 			} catch (error) {
-				this.log.error(`Fehler beim Datenabruf: ${error}`);
+				this.log.error(`Error on pulling data: ${error}`);
 			} finally {
 			//Terminate Adapter until next Schedule
 				// @ts-ignore
@@ -211,33 +213,42 @@ class RmbBhkw extends utils.Adapter {
 	}
 
 
+	// @ts-ignore
 	async createAndUpdateStates(results){
 		try {
-			this.log.info('Aktualisiere States in ioBroker.');
-			for (const dataPoint of results) {
-				//Konvertiere Nummern zum Datentyp number
+			// @ts-ignore
+			this.log.debug('Updating states in ioBroker.');
+			// @ts-ignore
+			// eslint-disable-next-line prefer-const
+			for (let dataPoint of results) {
+				//Convert numbers and boolean values from text to correct data type
 				if (dataPoint.type === 'number') {dataPoint.value = parseFloat(dataPoint.value);}
 				if (dataPoint.value === 'AUF' || dataPoint.value == 'EIN') {dataPoint.value = true;}
 				if (dataPoint.value === 'ZU' || dataPoint.value == 'AUS') {dataPoint.value = false;}
 
+				dataPoint.id = dataPoint.name.replace(this.FORBIDDEN_CHARS, '_');
+				dataPoint.id = dataPoint.id.replace(/ /g, '_');
 
-				await this.setObjectNotExistsAsync(dataPoint.name, {
+				// @ts-ignore
+				await this.setObjectNotExistsAsync(dataPoint.id, {
 					type: 'state',
 					common: {
 						name: dataPoint.name,
 						type: dataPoint.type,
 						role: 'state',
 						read: true,
-						write: true,
+						write: false,
 						unit: dataPoint.unit
 					},
 					native: {},
 				});
-				await this.setStateAsync(dataPoint.name, {val: dataPoint.value, ack: true});
+				// @ts-ignore
+				await this.setStateAsync(dataPoint.id, {val: dataPoint.value, ack: true});
 			}
 
 		} catch (error) {
-			this.log.error(`Fehler beim Speichern der Daten: ${error}`);
+			// @ts-ignore
+			this.log.error(`Error on saving data: ${error}`);
 		}
 	}
 
@@ -247,19 +258,24 @@ class RmbBhkw extends utils.Adapter {
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
 	 * @param {() => void} callback
 	 */
+	// @ts-ignore
 	onUnload(callback) {
 		stopped = true;
 		try {
 			// Here you must clear all timeouts or intervals that may still be active
 			// clearTimeout(timeout1);
 			// clearInterval(interval1);
+			// @ts-ignore
 			this.log.debug('Cleaning up....');
 
+			// @ts-ignore
 			callback();
 		} catch (e) {
+			// @ts-ignore
 			callback();
 		}
 	}
+// @ts-ignore
 }
 
 if (require.main !== module) {

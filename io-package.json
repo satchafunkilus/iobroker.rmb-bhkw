@@ -98,7 +98,7 @@
     "desc": {
       "en": "Reads data from RMB cogeneration units (e.g. Remeha eLina) via the RMBenergie customer portal",
       "de": "Liest Daten von RMB Blockheizkraftwerken (z.B. Remeha eLina) über das RMBenergie Kundenportal aus",
-      "ru": "Считывает данные с когенерационных установок RMB (например, Remeha eLina) через клиентский портал RMBenergie.",
+      "ru": "Считывает данные c когенерационных установок RMB (например, Remeha eLina) через клиентский портал RMBenergie.",
       "pt": "Lê dados de unidades de cogeração RMB (por exemplo, Remeha eLina) através do portal do cliente RMBenergie",
       "nl": "Leest gegevens uit van RMB WKK-installaties (bijv. Remeha eLina) via het RMBenergie klantenportaal",
       "fr": "Lit les données des unités de cogénération RMB (par exemple Remeha eLina) via le portail client RMBenergie",
@@ -106,7 +106,7 @@
       "es": "Lee datos de unidades de cogeneración de RMB (por ejemplo, Remeha eLina) a través del portal de clientes de RMBenergie",
       "pl": "Odczytuje dane z jednostek kogeneracyjnych RMB (np. Remeha eLina) za pośrednictwem portalu klienta RMBenergie",
       "uk": "Зчитує дані з когенераційних установок RMB (наприклад, Remeha eLina) через портал клієнтів RMBenergie",
-      "zh-cn": "通过 RMBenergie 客户门户从 RMB 热电联产机组（例如 Remeha eLina）读取数据"
+      "zh-cn": "通过 RMBenergie 客户门户从 RMB 热电联产机组（例如 Remeha eLina) 读取数据"
     },
     "authors": [
       "satchafunkilus"
