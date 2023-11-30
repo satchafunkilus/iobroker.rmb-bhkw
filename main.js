@@ -47,7 +47,7 @@ class RmbBhkw extends utils.Adapter {
 			native: {},
 		});
 
-		this.log.info('Warte für ' + delay/1000 + ' Sekunden.');
+		this.log.info('Delaying for ' + delay/1000 + ' seconds.');
 		//await new Promise(() => setTimeout(() => this.log.info('Starte mit Verzögerung'), delay));
 		await sleep(delay);
 		if (stopped) {
@@ -55,18 +55,18 @@ class RmbBhkw extends utils.Adapter {
 			return;
 		}
 		else {
-			this.log.info('Starte mit Verzögerung');
+			this.log.info('Start with Delay');
 
 			try {
 
 				if (bhkwID < 800 || bhkwID > 99999 || bhkwID == undefined) {
-					throw new Error('Ungültige BHKW ID. Stoppe Adapter.');
+					throw new Error('Invalid CHP ID. Stopping Adapter.');
 				}
 
 
-				this.log.info('Lese Daten für BHKW mit der ID: ' + bhkwID);
+				this.log.info('Reading data for CHP with ID: ' + bhkwID);
 				if (externalBrowser) {
-					this.log.info('Verwende Browser unter folgendem Pfad: ' + browserPath);
+					this.log.debug('Using external browser: ' + browserPath);
 					try {
 						if (allowInsecure) {
 							browser = await puppeteer.connect({ browserWSEndpoint: browserPath, ignoreHTTPSErrors: true});
@@ -75,10 +75,10 @@ class RmbBhkw extends utils.Adapter {
 							browser = await puppeteer.connect({ browserWSEndpoint: browserPath});
 						}
 					} catch (error) {
-						throw new Error('Konnte keine Verbindung zum externen Browser herstellen. Ist die URL korrekt?');
+						throw new Error('Could not establish connection to external browser. Is the URL correct?');
 					}
 				} else {
-					this.log.info('Verwende den integrierten Browser');
+					this.log.debug('Using the integrated browser');
 					if (allowInsecure) {
 						browser = await puppeteer.launch({ignoreHTTPSErrors: true, args: ['--proxy-bypass-list=*', '--disable-gpu', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--no-first-run', '--no-sandbox', '--no-zygote', '--single-process', '--ignore-certificate-errors', '--ignore-certificate-errors-spki-list', '--enable-features=NetworkService']});
 					}
@@ -152,7 +152,7 @@ class RmbBhkw extends utils.Adapter {
 					const oldTimeString = await this.getStateAsync('_TimeLastRefresh');
 					//If objects do not exist (first time starting adapter), exit immediately
 					if(!oldDateString || !oldTimeString) {
-						throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+						throw new Error('Server is not providing any data. Service potentially offline.');
 					}
 					// @ts-ignore
 					const oldDateSplit = oldDateString.val.toString().split('.');
@@ -163,7 +163,7 @@ class RmbBhkw extends utils.Adapter {
 					const oldDataAge = Math.floor((now.valueOf() - oldTimeStamp.valueOf())/1000/60);
 
 					await this.setStateAsync('_DataAge', {val: oldDataAge, ack: true});
-					throw new Error('Der Server scheint aktuell keine Daten zu liefern. Dienst vermutlich offline.');
+					throw new Error('Server is not providing any data. Service potentially offline.');
 				}
 
 				//Calculate time passed since last data refresh
@@ -188,7 +188,7 @@ class RmbBhkw extends utils.Adapter {
 					unit: 'min'
 				});
 
-				this.log.info('Holen der Daten erfolgreich.');
+				this.log.info('Succesfully pulled data.');
 				await this.createAndUpdateStates(results);
 
 				//Debug
@@ -200,7 +200,7 @@ class RmbBhkw extends utils.Adapter {
 				// this.log.info('Alter der Daten:' + dataAge);
 
 			} catch (error) {
-				this.log.error(`Fehler beim Datenabruf: ${error}`);
+				this.log.error(`Error on pulling data: ${error}`);
 			} finally {
 			//Terminate Adapter until next Schedule
 				// @ts-ignore
@@ -213,9 +213,9 @@ class RmbBhkw extends utils.Adapter {
 
 	async createAndUpdateStates(results){
 		try {
-			this.log.info('Aktualisiere States in ioBroker.');
+			this.log.debug('Updating states in ioBroker.');
 			for (const dataPoint of results) {
-				//Konvertiere Nummern zum Datentyp number
+				//Convert numbers to type number
 				if (dataPoint.type === 'number') {dataPoint.value = parseFloat(dataPoint.value);}
 				if (dataPoint.value === 'AUF' || dataPoint.value == 'EIN') {dataPoint.value = true;}
 				if (dataPoint.value === 'ZU' || dataPoint.value == 'AUS') {dataPoint.value = false;}
@@ -237,7 +237,7 @@ class RmbBhkw extends utils.Adapter {
 			}
 
 		} catch (error) {
-			this.log.error(`Fehler beim Speichern der Daten: ${error}`);
+			this.log.error(`Error on saving data: ${error}`);
 		}
 	}
 
