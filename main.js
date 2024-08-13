@@ -70,7 +70,8 @@ class RmbBhkw extends utils.Adapter {
 					this.log.debug('Using external browser: ' + browserPath);
 					try {
 						if (allowInsecure) {
-							browser = await puppeteer.connect({ browserWSEndpoint: browserPath, ignoreHTTPSErrors: true});
+							//browser = await puppeteer.connect({ browserWSEndpoint: browserPath, ignoreHTTPSErrors: true});
+							browser = await puppeteer.connect({ browserWSEndpoint: browserPath});
 						}
 						else {
 							browser = await puppeteer.connect({ browserWSEndpoint: browserPath});
@@ -81,7 +82,7 @@ class RmbBhkw extends utils.Adapter {
 				} else {
 					this.log.debug('Using the integrated browser');
 					if (allowInsecure) {
-						browser = await puppeteer.launch({ignoreHTTPSErrors: true, args: ['--proxy-bypass-list=*', '--disable-gpu', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--no-first-run', '--no-sandbox', '--no-zygote', '--single-process', '--ignore-certificate-errors', '--ignore-certificate-errors-spki-list', '--enable-features=NetworkService']});
+						browser = await puppeteer.launch({args: ['--proxy-bypass-list=*', '--disable-gpu', '--disable-dev-shm-usage', '--disable-setuid-sandbox', '--no-first-run', '--no-sandbox', '--no-zygote', '--single-process', '--ignore-certificate-errors', '--ignore-certificate-errors-spki-list', '--enable-features=NetworkService']});
 					}
 					else {
 						browser = await puppeteer.launch();
