@@ -126,7 +126,10 @@
       "cogeneration",
       "home automation"
     ],
-    "licenseInformation": "MIT",
+    "licenseInformation": {
+      "license": "MIT",
+      "type": "free"
+    },
     "platform": "Javascript/Node.js",
     "icon": "rmb-bhkw.png",
     "enabled": true,
