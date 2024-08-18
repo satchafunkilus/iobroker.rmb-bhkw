@@ -186,7 +186,9 @@ class RmbBhkw extends utils.Adapter {
 					const oldTimeSplit = oldTimeString.val.toString().split(':');
 					// @ts-ignore
 					const oldTimeStamp = new Date(
+						// @ts-ignore
 						oldDateSplit[2],
+						// @ts-ignore
 						oldDateSplit[1] - 1,
 						oldDateSplit[0],
 						oldTimeSplit[0],
