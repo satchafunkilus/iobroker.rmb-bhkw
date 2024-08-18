@@ -37,6 +37,9 @@ and is then accessible at `http://[IP-of-docker-host]:3000`. If the web interfac
 
 
 ## Changelog
+### **WORK IN PROGRESS**
+* Updated dependencies
+
 ### 1.0.7 (2023-11-30)
 * BREAKING CHANGE due to renaming of object ids
 * Changed object IDs to English
