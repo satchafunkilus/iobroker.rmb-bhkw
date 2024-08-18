@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "rmb-bhkw",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "news": {
+      "1.1.0": {
+        "en": "Updated dependencies",
+        "de": "Aktualisierte Abhängigkeiten",
+        "ru": "Обновленные зависимости",
+        "pt": "Dependências atualizadas",
+        "nl": "Bijgewerkte afhankelijkheden",
+        "fr": "Dépendances actualisées",
+        "it": "Dipendenze aggiornate",
+        "es": "Dependencias actualizadas",
+        "pl": "Aktualizacja zależności",
+        "uk": "Оновлені залежності",
+        "zh-cn": "更新的依赖关系"
+      },
       "1.0.7": {
         "en": "BREAKING CHANGE due to renaming of object ids\nChanged object IDs to English\nPrevented forbidden chars in object IDs\nChanged objects to read-only\nChanged logs to english\nChanged some logs from info to debug",
         "de": "BREAKING CHANGE durch Umbenennung von Objektiden\nGeänderte Objekt-IDs auf Englisch\nVerhinderte verbotene Wagen in Objekt-IDs\nGeänderte Objekte nur lesen\nÄnderte Protokolle auf Englisch\nEinige Protokolle von Info zu Debug geändert",
