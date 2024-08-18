@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "rmb-bhkw",
-    "version": "1.0.7",
+    "version": "1.1.0",
     "news": {
       "1.0.7": {
         "en": "BREAKING CHANGE due to renaming of object ids\nChanged object IDs to English\nPrevented forbidden chars in object IDs\nChanged objects to read-only\nChanged logs to english\nChanged some logs from info to debug",
