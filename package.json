@@ -29,7 +29,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
-    "puppeteer": "^23.0.2"
+    "puppeteer": "^23.9.0"
   },
   "devDependencies": {
     "@alcalzone/release-script": "^3.6.0",
